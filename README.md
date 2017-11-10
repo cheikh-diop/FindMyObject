@@ -19,4 +19,4 @@ Backlog :
 |5|En tant qu'utilisateur qui a perdu un objet je souhaite pouvoir contacter via l'application la personne qui a mis une annonce qui pourrait correspondre a mon objet perdu. |elevee| 2 | Todo|
 |6|En tant qu'utilisateur qui a perdu un objet je souhaite recevoir dans la mesagerie de l'application une annonce de type objet trouve qui correspond aux critères de mon objet perdu.|elevee| 2 | Todo|
 |7|En tant qu'utilisateur qui a trouvé un objet je souhaite pouvoir creer une annonce de type objet trouve en specifiant la catégorie de l'objet , la marque , le model , la description , la date et l'heure ,le lieu et une image  et de recevoir un mail de confirmation .|elevee| 2 | Todo|
-|9|En tant qu'utilisateur qui a mis une annonce de type objet trouve je souhaite pouvoir etre contacte par d'autres utilisateurs.|elevee| 2 | Todo|
+|9|En tant qu'utilisateur qui a mis une annonce de type objet trouve je souhaite pouvoir m'inscrite afin d'etre contacte par d'autres utilisateurs.|elevee| 2 | Todo|
