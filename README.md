@@ -12,8 +12,8 @@ Backlog :
 
 |ID |Description|Priorité|Coût|Etat|
 |:-:|:----------|:------:|:---|:---|
-|1|En tant qu'utilisateur je souhaite pouvoir m'inscrire en specifiant un login/adresse mail , un mot de passe et le type de compte que je veux creer.  |faible| 1 | Todo|
-|2|En tant qu'utilisateur je souhaite pouvoir m'authentifier en spécifiant mon login/adresse mail et un  mot de passe .|faible| 1 | Todo|
+|1|En tant qu'utilisateur je souhaite pouvoir m'inscrire en specifiant un login/adresse mail , un mot de passe.  |faible| 1 | Todo|
+|2|En tant qu'utilisateur je souhaite pouvoir m'authentifier en spécifiant mon login/adresse mail et un  mot de passe. Ou via un accesseur Facebook, tweeter,G+...|faible| 1 | Todo|
 |3|En tant qu'utilisateur qui a perdu un objet je souhaite pouvoir effectuer une recherche afin d'avoir une liste d'objets trouvés qui ont des caractéristiques qui se rapproche de mes critères. |elevee| 2 | Todo|
 |4|En tant qu'utilisateur qui a perdu un objet je souhaite pouvoir créer une annonce de type objet perdu en spécifiant la catégorie de l'objet , la marque , le model , la description , la date et l'heure ,le lieu et une image. |elevee| 2 | Todo|
 |5|En tant qu'utilisateur qui a perdu un objet je souhaite pouvoir contacter via l'application la personne qui a mis une annonce qui pourrait correspondre a mon objet perdu. |elevee| 2 | Todo|
