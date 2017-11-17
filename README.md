@@ -1,4 +1,4 @@
-FindMyObject
+﻿FindMyObject
 =========
 
 A propos :
@@ -10,7 +10,7 @@ Backlog :
 ---------
 
 
-|ID |Description|Priorité|Coût|Etat|
+|ID |Description|Priorité|Coût|État|
 |:-:|:----------|:------:|:---|:---|
 |1|En tant qu'utilisateur je souhaite pouvoir m'inscrire soit avec un login ou mon adresse mail et un mot de passe  |faible| 1 | Todo|
 |2|En tant qu'utilisateur je souhaite pouvoir m'authentifier en spécifiant mon login,adresse mail et un  mot de passe|faible| 1 | Todo|
