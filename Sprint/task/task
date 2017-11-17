@@ -1,23 +1,6 @@
 Cheikh
     Base de donnee : 
-    Utilisateur : 
-    -Nom  
-    -Prenom
-    -email -
-    -mot de passe , 
-    -numero de tel ( optionnel )  
-    -ville 
-    - pays  
-    -adresse 
-    -[Annonce].    
-    Annonce : 
-    -Type d'annonce 
-    -Description
-    -Marque objet
-    -Model Objet 
-    -url_image ( optionnel) 
-    -Lieux 
-    -Date et heure 
+ 
         Base de donnee deja fait . 
 Bastien      Inscription:    
         ---> Presentation  : Creation de formulaire d'Inscription avec les champs nom prenom email  
