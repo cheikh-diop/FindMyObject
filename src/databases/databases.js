@@ -13,6 +13,7 @@ var schema = new mongoose.Schema({
             country: String
         },
         advert: {
+            name: String,
             type: String,
             description: String,
             mark: String,
