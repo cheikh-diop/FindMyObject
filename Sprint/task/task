@@ -1,0 +1,34 @@
+Cheikh
+    Base de donnee : 
+    Utilisateur : 
+    -Nom  
+    -Prenom
+    -email -
+    -mot de passe , 
+    -numero de tel ( optionnel )  
+    -ville 
+    - pays  
+    -adresse 
+    -[Annonce].    
+    Annonce : 
+    -Type d'annonce 
+    -Description
+    -Marque objet
+    -Model Objet 
+    -url_image ( optionnel) 
+    -Lieux 
+    -Date et heure 
+        Base de donnee deja fait . 
+Bastien      Inscription:    
+        ---> Presentation  : Creation de formulaire d'Inscription avec les champs nom prenom email  
+        --> metier        :  Creation  controller pour l'Inscription de creation route  
+
+Omar Nour    Deconnexion - Connexion  :    Creation de formulaire d'Inscription avec les champs nom prenom email  
+            --> metier        :  Creation  controller pour l'Inscription de creation route express
+
+ Cheikh --> Accueil : Liste des annonces
+  
+Rihab -->   Ajout annonce d'objet perdu/trouver :  Creer formulaire , Creer controller , Creer Route 
+        et quelque part specifier si c'est une annonce d'objet perdu ou trouve .  
+
+
