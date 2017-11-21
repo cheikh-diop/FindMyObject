@@ -1,17 +1,16 @@
-Cheikh
-    Base de donnee : 
- 
-        Base de donnee deja fait . 
-Bastien      Inscription:    
-        ---> Presentation  : Creation de formulaire d'Inscription avec les champs nom prenom email  
-        --> metier        :  Creation  controller pour l'Inscription de creation route  
-
-Omar Nour    Deconnexion - Connexion  :    Creation de formulaire d'Inscription avec les champs nom prenom email  
-            --> metier        :  Creation  controller pour l'Inscription de creation route express
-
- Cheikh --> Accueil : Liste des annonces
-  
-Rihab -->   Ajout annonce d'objet perdu/trouver :  Creer formulaire , Creer controller , Creer Route 
-        et quelque part specifier si c'est une annonce d'objet perdu ou trouve .  
-
-
+|Id tâche | Tâche |Id User Story | Personne en charge |
+| ------------- | ------------- |------------- | ------------- |
+| 1  | Rédiger le test E2E  : <ul><li>Écrire le test E2E qui décrit un sénario d'inscription (remplir le formulaire d'inscription et accéder directement à l'application si l'inscription se fait avec succès sinon se rediriger vers la page d'inscription)</li></ul>| - |   |
+| 2  | Rédiger le test E2E  : <ul><li>Écrire le test E2E qui décrit un sénario d'authentification (saisie de l'email et password et si ils sont validés se rediriger vers la page d'acceuil de l'application , et si ce n'est pas le cas se rediriger vers la page d'authentification)</li></ul>| - | |
+| 3  | Rédiger le test E2E  : <ul><li>Écrire le test E2E  qui décrit un sénario de création d'une annonce d'objet perdu (remplir le formulaire de création d'une annonce d'objet perdu et si l'annonce est créé avec succès se redériger vers le tableau de bord des annonces d'objets perdus sinon ce rediriger vers la page de création d'annonce d'objets perdus)</li></ul>|  | |
+| 4  | Rédiger le test E2E : <ul><li>Écrire le test E2E qui décrit un sénario de création d'une annonce d'objet trouvé (remplir le formulaire de création d'une annonce d'objet trouvé et si l'annonce est créé avec succès se redériger vers le tableau de bord des annonces d'objets créés sinon ce rediriger vers la page de création d'annonce d'objets crées) </li></ul>|  |  |
+| 5  | Configuration du serveur NodeJs :  <ul><li>Créer un squelette d'un projet nodejs</li><li>Installer les dépendances : express,path,body,cors,express-myconnection,mysql,nodemon</li><li>Faire la liaison avec la base de données Mysql</li></ul>Configurer la partie front-end du projet (Angular) : <ul><li>Créer un squelette d'un projet angular</li><li>Installer Bootstrap</li><li>Mettre en place un systeme de routage entre les composants d'Angular</li><li>Mettre en place Protractor pour les tests E2E</li></ul>|  |  |
+| 6  | Mettre en place la base de données | - | - |
+| 7  | Définir les intérations entre la couche métier et la couche données (écrire les requêtes SQL) : <ul><li>Écrire la requête SQL qui permet d'ajouter un nouvel utilisateur à la table "USER"</li><li>Écrire la requête SQL qui permet de verifier l'existance d'un utilisateur dans la table "USER"</li><li>Écrire la requête SQL qui permet de verifier si un email exist dans la table "USER"</li></ul>  |  |  | 
+| 8  | Définir les intérations entre la couche métier et la couche données(écrire les requêtes SQL) : <ul><li>Écrire la requête sql qui permet de vérifier la présence d’un enregistrement dans la table "USER" correspondant aux informations envoyés (login/pwd)</li></ul> |  |   |
+| 9  | Définir les intérations entre la couche métier et la couche données  (écrire les requêtes SQL) :  <ul><li>Écrire la requête SQL qui permet d'ajouter une annonce d'un objet perdu </li><li>|  |  |
+| 10 | Définir les intérations entre la couche métier et la couche données (écrire les requêtes SQL) : <ul> <li>Écrire une requête SQL qui permet de récuperer l'ensemble des annonces créés d'objets perdus </li> </ul>|  |  |
+| 11 | Définir les intérations entre la couche présentation et la couche métier: <ul><li>Définir l'url de la fonction dans le serveur qui se charge d'ajouter un utilisateur ainsi que le type de requêtes http qu'elle accepte (POST/GET/PUT/PATCH/DELETE) </li><li> |  | |
+| 12 | Définir les intérations entre la couche présentation et la couche métier pour la US2 : <ul><li>Définir l'url de la fonction dans le serveur qui se charge de vérifier si un utilisateur existe ainsi que le type de requêtes http qu'elle accepte (POST/GET/PUT/PATCH/DELETE) </li><li> |  | |
+| 13 | Définir les intérations entre la couche présentation et la couche métier : <ul><li>Définir l'url de la fonction dans le serveur qui se charge d'ajouter une annonce d'un objet perdu ainsi que le type de requêtes http qu'elle accepte (POST/GET/PUT/PATCH/DELETE) </li><li> |  | |
+| 14 | Définir les intérations entre la couche présentation et la couche métier : <ul><li>Définir l'url de la fonction dans le serveur qui se charge de récuperer la liste des annonces d'objets perdus ainsi que le type de requêtes http qu'elle accepte (POST/GET/PUT/PATCH/DELETE) </li><li> |  | |
