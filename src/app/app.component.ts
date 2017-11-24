@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataService } from './data.service';
+import { AdvertService } from './advert.service';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +9,12 @@ import { DataService } from './data.service';
 })
 export class AppComponent {
 
-  users: Array<any>;
+  ad: Array<any>;
 
-  constructor(private _dataService: DataService) {
+  constructor(private _dataService: AdvertService) {
 
-    this._dataService.getUsers()
-      .subscribe(res => this.users = res);
+    this._dataService.getAdverts()
+      .subscribe(res => this.ad = res);
 
   }
 
