@@ -78,7 +78,7 @@ router.post('/addAdvertLessUser',(req,res)=>{
 
 
 });
-router.post('/addAdvertLessUser',(req,res)=>{
+/*router.post('/addAdvertLessUser',(req,res)=>{
     var a =new advertise();
     
     a.description="J'ai perdu mon iphone a talence Veuillez me contacter au 06 95 93 36 47";
@@ -99,5 +99,5 @@ router.post('/addAdvertLessUser',(req,res)=>{
 
 
 });
-
+*/
 module.exports = router;

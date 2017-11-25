@@ -10,6 +10,7 @@ import { AdvertService } from './advert.service';
 import { ConnectionComponent } from './connection/connection.component';
 import { RouterModule, Routes } from '@angular/router';
 import { Component } from '@angular/core/src/metadata/directives';
+import { CreateAdvertComponent } from './create-advert/create-advert.component';
 
 
 
@@ -18,13 +19,15 @@ import { Component } from '@angular/core/src/metadata/directives';
     AppComponent,
   
     AdvertComponent,
-    ConnectionComponent
+    ConnectionComponent,
+    CreateAdvertComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     RouterModule.forRoot(
       [{ path: 'advert', component: AdvertComponent },
+      { path: 'createAdvert', component: CreateAdvertComponent },
       
       { path: '', redirectTo: 'advert', pathMatch: 'full' },
 
