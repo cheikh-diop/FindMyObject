@@ -9,12 +9,12 @@ import { AdvertService } from './advert.service';
 })
 export class AppComponent {
 
-  ad: Array<any>;
+  users: Array<any>;
 
-  constructor(private _dataService: AdvertService) {
+  constructor(private _dataService: DataService) {
 
-    this._dataService.getAdverts()
-      .subscribe(res => this.ad = res);
+    this._dataService.getUsers()
+      .subscribe(res => this.users = res);
 
   }
 

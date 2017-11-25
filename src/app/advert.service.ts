@@ -9,13 +9,13 @@ export class AdvertService {
 
   advert:any;
   constructor(
-    private http : Http
-  ) { }
+    private http : Http) { }
   getAdverts() {
 
     return this.http.get("/advert/getAllAdvert")
     .map(advert => this.advert = advert.json().data);
-
+    
+  
   }
 
 }

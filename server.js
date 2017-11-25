@@ -7,7 +7,7 @@ const app = express();
 // API file for interacting with MongoDB
 const api = require('./server/routes/api');
 const advert = require('./server/routes/advert');
-
+//const connexion=require('./server/routes/connexion'); 
 // Parsers
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
@@ -16,9 +16,11 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // API location
-app.use('/api', api);
+app.use('/api', api);`                                                                                                                                 `
 
 app.use('/advert',advert);
+
+//app.use('/connexion',connexion);
 
 
 //Set Port

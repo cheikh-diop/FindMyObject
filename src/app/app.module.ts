@@ -4,19 +4,33 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { DataService } from './data.service';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+
 import { AdvertComponent } from './advert/advert.component';
 import { AdvertService } from './advert.service';
+import { ConnectionComponent } from './connection/connection.component';
+import { RouterModule, Routes } from '@angular/router';
+import { Component } from '@angular/core/src/metadata/directives';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeroDetailComponent,
-    AdvertComponent
+  
+    AdvertComponent,
+    ConnectionComponent
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(
+      [{ path: 'advert', component: AdvertComponent },
+      
+      { path: '', redirectTo: 'advert', pathMatch: 'full' },
+
+
+      ]
+    )
   ],
   providers: [DataService, AdvertService],
   bootstrap: [AppComponent]

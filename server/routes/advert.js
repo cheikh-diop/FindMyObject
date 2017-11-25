@@ -78,5 +78,26 @@ router.post('/addAdvertLessUser',(req,res)=>{
 
 
 });
+router.post('/addAdvertLessUser',(req,res)=>{
+    var a =new advertise();
+    
+    a.description="J'ai perdu mon iphone a talence Veuillez me contacter au 06 95 93 36 47";
+    a.type="lost";
+    a.mark="Iphone";
+    a.model="6";
+    a.address.code_city="33600";
+    a.address.city="Pessac";
+    a.address.country="France";
+    a.date_time="21h:00";
+    a.save(function(err){
+
+        if (err){
+            res.send(err);
+        }
+        res.send({message:"add created"});
+    })
+
+
+});
 
 module.exports = router;
