@@ -1,8 +1,19 @@
-<p>
-  advert works Merci
-  
-</p>
-
-<ul>
-  <li *ngFor="let advert of adverts"> {{ advert.type }}</li>
-</ul>
+<div class="container">
+  <h1>Annonce Liste</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let advert of adverts">
+        <td>{{ advert.type }}</td>
+        <td>{{ advert.description }}</td>
+        <td>Show Detail</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

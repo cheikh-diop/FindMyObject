@@ -1,13 +1,11 @@
 {
-  "name": "mean",
+  "name": "findmyject",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "npm run build & concurrently --kill-others \"npm run serve-api\" \"npm run serve\"",
-    "serve": "ng serve --proxy-config proxy.conf.json",
-    "build": "ng build --output-path=public",
-    "serve-api": "node server.js",
+    "start": "ng build && node ./bin/www",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

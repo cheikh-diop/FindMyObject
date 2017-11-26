@@ -1,41 +1,42 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule , Routes } from '@angular/router';
+
 
 import { AppComponent } from './app.component';
-import { HttpModule } from '@angular/http';
-import { DataService } from './data.service';
-
 import { AdvertComponent } from './advert/advert.component';
-import { AdvertService } from './advert.service';
-import { ConnectionComponent } from './connection/connection.component';
-import { RouterModule, Routes } from '@angular/router';
-import { Component } from '@angular/core/src/metadata/directives';
-import { CreateAdvertComponent } from './create-advert/create-advert.component';
+import { FormArray } from '@angular/forms/src/model';
+import { Router } from '@angular/router/src/router';
 
-
+const appRoutes: Routes = [
+  {
+    path: 'adverts',
+    component: AdvertComponent,
+    data: { title: 'Advert List' }
+  },
+  { path: '',
+    redirectTo: '/adverts',
+    pathMatch: 'full'
+  }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-  
-    AdvertComponent,
-    ConnectionComponent,
-    CreateAdvertComponent
+    AdvertComponent
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(
-      [{ path: 'advert', component: AdvertComponent },
-      { path: 'createAdvert', component: CreateAdvertComponent },
-      
-      { path: '', redirectTo: 'advert', pathMatch: 'full' },
-
-
-      ]
+      appRoutes, 
+      { enableTracing :true }
     )
   ],
-  providers: [DataService, AdvertService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
