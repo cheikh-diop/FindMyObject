@@ -2,7 +2,7 @@ import { async } from 'q';
 
 //Injection the service 
 
-var UsersService = require('../services/login.js');
+var UsersService = require('../services/Users.js');
 
 //Saving the context of this module inside the variable _the
 _this = this
