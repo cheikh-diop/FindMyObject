@@ -1,5 +1,4 @@
 var express = require('express');
-<<<<<<< HEAD
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -8,19 +7,6 @@ var bodyParser = require('body-parser');
 var advert = require('./routes/advert');
 var app = express();
 
-=======
-var bodyParser = require('body-parser');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var advert = require('./routes/advert');
-var signup = require('./routes/signup');
-
-
-var app = express();
-
-
->>>>>>> master
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':'false'}));
@@ -52,8 +38,4 @@ mongoose.connect('mongodb://mongodb:mongodb@ds115546.mlab.com:15546/21findmyject
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
 
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 module.exports = app;
