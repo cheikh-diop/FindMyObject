@@ -48,15 +48,14 @@
         <label class="col-sm-2 control-label">Ajouter une image</label>
         <div class="col-sm-10">
           <label class="custom-file">
-            <input [(ngModel)]='advert.image_url' type="file" id="image_url" name="image_url" class="custom-file-input" accept="image/*" multiple app-filereader>
-            <span class="custom-file-control"></span>
+            <input ngModel (change)="readUrl($event)"  type="file" id="image_url" name="image_url" class="custom-file-input" accept="image/*" multiple app-filereader>
+            <label [(ngModel)]='advert.image_url'></label><br>
+            <img [src]="url">
           </label>
         </div>
       </div>
     </div>
    
-     
-
     <!-- Text input-->
     <div class="form-group">
       <label>Ou est ce que vous avez perdu votre objet </label>
@@ -100,11 +99,10 @@
         <!-- Button -->
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-          <button class="btn btn-primary" id="btn-advert"type="submit" (click) = 'InvitUser()'>Envoyer </button>
+          <button class="btn btn-primary" id="btn-advert"type="submit" (click) = 'createAdvert()'>Envoyer </button>
           <button class="btn btn-default" type="reset">Annuler </button>
         </div>
         </div>
       </div>
-
   </form>
 </div>
