@@ -10,6 +10,8 @@ import { AdvertComponent } from './advert/advert.component';
 import { FormArray } from '@angular/forms/src/model';
 import { Router } from '@angular/router/src/router';
 import { AdvertDetailComponent } from './advert-detail/advert-detail.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 const appRoutes: Routes = [
   {
@@ -34,7 +36,9 @@ const appRoutes: Routes = [
     
     AppComponent,
     AdvertComponent,
-    AdvertDetailComponent
+    AdvertDetailComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

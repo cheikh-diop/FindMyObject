@@ -5,6 +5,9 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 
 var advert = require('./routes/advert');
+var signup = require('./routes/signup');
+
+
 var app = express();
 
 app.use(logger('dev'));
