@@ -2,13 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule , Routes } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { AdvertComponent } from './advert/advert.component';
 import { FormArray } from '@angular/forms/src/model';
 import { Router } from '@angular/router/src/router';
+import { AdvertDetailComponent } from './advert-detail/advert-detail.component';
 
 const appRoutes: Routes = [
   {
@@ -16,7 +17,13 @@ const appRoutes: Routes = [
     component: AdvertComponent,
     data: { title: 'Advert List' }
   },
-  { path: '',
+  {
+    path: 'advert-detail/:id',
+    component: AdvertDetailComponent
+  }
+  ,
+  {
+    path: '',
     redirectTo: '/adverts',
     pathMatch: 'full'
   }
@@ -24,16 +31,19 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
+    
     AppComponent,
-    AdvertComponent
+    AdvertComponent,
+    AdvertDetailComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    CommonModule,
     HttpClientModule,
     RouterModule.forRoot(
-      appRoutes, 
-      { enableTracing :true }
+      appRoutes,
+      { enableTracing: true }
     )
   ],
   providers: [],

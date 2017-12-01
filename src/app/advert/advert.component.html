@@ -1,5 +1,5 @@
-<div class="container">
-  <h1>Annonce Liste</h1>
+<!--<div class="container">
+  <h1>Liste des annonces</h1>
   <table class="table">
     <thead>
       <tr>
@@ -12,8 +12,34 @@
       <tr *ngFor="let advert of adverts">
         <td>{{ advert.type }}</td>
         <td>{{ advert.description }}</td>
-        <td>Show Detail</td>
+        <td><a [routerLink]="['/advert-detail', advert._id]"> Voir Annonce</a></td>
       </tr>
     </tbody>
   </table>
-</div>
+</div> !-->
+
+<body>
+    <div class="container">
+      <h2>Liste des annonces </h2>
+      <p>Cliquer sur l'image pour voir l'annonce </p>
+      <div class="row" >
+        <div *ngFor="let advert of adverts" class="col-md-3">
+          <div class="thumbnail  ">
+            <p>{{ advert.date_time }}</p>
+              <img src="../../assets/test.jpg" alt="Lights" style="width:65%">
+              <div  class="caption">
+                  <p>{{ advert.title }}</p>  
+                <p>{{ advert.type }}</p>
+                  
+                  <p style="white-space: nowrap;
+                  width: 150px;
+                  overflow: hidden;
+                  text-overflow: ellipsis;" >{{ advert.description }}</p> 
+              </div>
+              <a class="btn btn-primary"   [routerLink]="['/advert-detail', advert._id]"> Voir Annonce </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </body>
+    

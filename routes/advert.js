@@ -15,7 +15,9 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
   Advert.findById(req.params.id, function (err, post) {
     if (err) return next(err);
+    console.log("Le Json "+post);
     res.json(post);
+    
   });
 });
 
