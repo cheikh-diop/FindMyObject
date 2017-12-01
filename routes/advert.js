@@ -15,20 +15,60 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
   Advert.findById(req.params.id, function (err, post) {
     if (err) return next(err);
+<<<<<<< HEAD
+    res.json(post);
+=======
     console.log("Le Json "+post);
     res.json(post);
     
+>>>>>>> master
   });
 });
 
 /* SAVE ADVERT */
+<<<<<<< HEAD
+router.post('/createAdvert', function(req, res, next) {
+=======
 router.post('/', function(req, res, next) {
+>>>>>>> master
   Advert.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
+<<<<<<< HEAD
+/* SAVE ADVERT SOME COLOMNS */
+router.post('/addAdvertLessUser',(req,res)=>{
+  var a =new Advert();
+  console.log("hello");
+  a.title=req.body.title;
+  a.description=req.body.description;
+  a.type=req.body.type;
+  a.mark=req.body.mark;
+  a.model=req.body.model;
+  a.address.code_city=req.body.code_city;
+  a.address.city=req.body.city;
+  a.address.country=req.body.country;
+  a.date_time=req.body.date_time;
+  a.image_url=req.body.image_url;
+  a.save(function(err){
+    console.log("TEST MONGO"+a.type);
+      if (err){
+        console.log("hello");
+          res.send(err);
+         
+      }
+      res.send({message:"add created"});
+  })
+
+
+});
+
+
+
+=======
+>>>>>>> master
 /* UPDATE ADVERT */
 router.put('/:id', function(req, res, next) {
   Advert.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
