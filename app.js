@@ -1,11 +1,11 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var bodyParser = require('body-parser');
-
 var advert = require('./routes/advert');
 var app = express();
+
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -37,5 +37,6 @@ mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://mongodb:mongodb@ds115546.mlab.com:15546/21findmyject', { useMongoClient: true, promiseLibrary: require('bluebird') })
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
+
 
 module.exports = app;
