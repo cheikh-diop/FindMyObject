@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+<div class="container">
+  <h1>Annonce Liste</h1>
+=======
 <!--<div class="container">
   <h1>Liste des annonces</h1>
+>>>>>>> master
   <table class="table">
     <thead>
       <tr>
@@ -12,6 +17,13 @@
       <tr *ngFor="let advert of adverts">
         <td>{{ advert.type }}</td>
         <td>{{ advert.description }}</td>
+<<<<<<< HEAD
+        <td>Show Detail</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+=======
         <td><a [routerLink]="['/advert-detail', advert._id]"> Voir Annonce</a></td>
       </tr>
     </tbody>
@@ -43,3 +55,4 @@
     </div>
     </body>
     
+>>>>>>> master
