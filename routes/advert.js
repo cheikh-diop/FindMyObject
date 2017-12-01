@@ -15,18 +15,29 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
   Advert.findById(req.params.id, function (err, post) {
     if (err) return next(err);
+<<<<<<< HEAD
     res.json(post);
+=======
+    console.log("Le Json "+post);
+    res.json(post);
+    
+>>>>>>> master
   });
 });
 
 /* SAVE ADVERT */
+<<<<<<< HEAD
 router.post('/createAdvert', function(req, res, next) {
+=======
+router.post('/', function(req, res, next) {
+>>>>>>> master
   Advert.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
+<<<<<<< HEAD
 /* SAVE ADVERT SOME COLOMNS */
 router.post('/addAdvertLessUser',(req,res)=>{
   var a =new Advert();
@@ -56,6 +67,8 @@ router.post('/addAdvertLessUser',(req,res)=>{
 
 
 
+=======
+>>>>>>> master
 /* UPDATE ADVERT */
 router.put('/:id', function(req, res, next) {
   Advert.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
