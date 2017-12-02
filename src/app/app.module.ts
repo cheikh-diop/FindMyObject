@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
 import { AppComponent } from './app.component';
 import { AdvertComponent } from './advert/advert.component';
 import { FormArray } from '@angular/forms/src/model';
@@ -14,11 +13,17 @@ import { LoginComponent } from './login/login.component';
 import { CreateAdvertComponent } from './create-advert/create-advert.component';
 import { SignupComponent } from './signup/signup.component';
 
+
 const appRoutes: Routes = [
   {
     path: 'adverts',
     component: AdvertComponent,
     data: { title: 'Advert List' }
+  },
+
+  { path: '',
+    redirectTo: '/createAdvert',
+    pathMatch: 'full'
   },
   {
     path: 'createAdvert',
@@ -36,10 +41,8 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   }
 ];
-
 @NgModule({
   declarations: [
-
     CreateAdvertComponent,
     AppComponent,
     AdvertComponent,
@@ -49,7 +52,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    FormsModule, 
     CommonModule,
     HttpClientModule,
     RouterModule.forRoot(
