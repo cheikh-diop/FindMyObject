@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-
-
-=======
->>>>>>> master
 var mongoose = require('mongoose');
 
 
@@ -21,11 +16,5 @@ var AdvertSchema = new mongoose.Schema({
             country: String
         }
     });
-<<<<<<< HEAD
-    var advertise = mongoose.model('advert',AdvertSchema);
-    
-    module.exports = advertise;
-=======
 
     module.exports = mongoose.model('advert',AdvertSchema);
->>>>>>> master

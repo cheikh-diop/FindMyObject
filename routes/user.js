@@ -24,6 +24,7 @@ router.get('/:id', function(req, res, next) {
 /* SAVE USER */
 router.post('/', function(req, res, next) {
   User.create(req.body, function (err, post) {
+    console.log(req.body);
     if (err) return next(err);
     res.json(post);
   });
