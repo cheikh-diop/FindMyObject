@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../models';
-import { Address } from '../models';
 import { last } from '@angular/router/src/utils/collection';
 
 @Component({
