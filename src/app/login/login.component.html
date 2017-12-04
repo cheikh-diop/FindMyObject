@@ -1,3 +1,119 @@
-<p>
-  login works!
-</p>
+<div class="container">
+  <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <div class="panel-title">Sign In</div>
+      </div>
+
+      <div style="padding-top:30px" class="panel-body">
+
+        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+
+        <form id="loginform" class="form-horizontal" role="form">
+
+          <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-user"></i>
+            </span>
+            <input id="login-email" type="text" class="form-control" name="email" value="" placeholder="email" required>
+          </div>
+
+          <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-lock"></i>
+            </span>
+            <input id="login-password" type="password" class="form-control" name="password" placeholder="password" required>
+          </div>
+
+          <div style="margin-top:10px" class="form-group">
+
+
+            <div class="col-sm-12 controls">
+              <button id="btn-login" href="#" class="btn btn-success btn-lg btn-block" (click)='Onclick()'>s'indentifier </button>
+            </div>
+            <div class="col-sm-12 controls">
+              <button id="btn-signUp" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">s'inscrire </button>
+            </div>
+          </div>
+        </form>
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Formulaire inscription</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-offset-2 col-md-8">
+                    <h1> Inscription
+                      <br/>
+                      <small> Merci de renseigner vos informations </small>
+                    </h1>
+                  </div>
+                </div>
+                <form  #userForm="ngForm">
+                  <div class="form-group">
+                    <label for="name">Nom</label>
+                    <input type="text" class="form-control" [(ngModel)]="user.name" name="isbn" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Prenom</label>
+                    <input type="text" class="form-control" [(ngModel)]="user.last_name" name="title" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Mail</label>
+                    <input type="text" class="form-control" [(ngModel)]="user.email" name="author" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Mot de passe</label>
+                    <input class="form-control" [(ngModel)]="user.password" name="password" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="name">numero de rue et rue </label>
+                    <input type="text" class="form-control" [(ngModel)]="user.address.street" name="publisher" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Ville </label>
+                    <input type="text" class="form-control" [(ngModel)]="user.address.city" name="publisher" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Code Ville </label>
+                    <input type="text" class="form-control" [(ngModel)]="user.address.city_code" name="publisher" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Pays </label>
+                    <input type="text" class="form-control" [(ngModel)]="user.address.country" name="publisher" required>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-success" (click)='createUser()' data-dismiss="modal" >Save</button>
+                  </div>
+                </form>
+
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+
+
+
+    </div>
+  </div>
+</div>

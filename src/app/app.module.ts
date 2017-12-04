@@ -6,28 +6,28 @@ import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AdvertComponent } from './advert/advert.component';
-import { FormArray } from '@angular/forms/src/model';
-import { Router } from '@angular/router/src/router';
 import { AdvertDetailComponent } from './advert-detail/advert-detail.component';
 import { LoginComponent } from './login/login.component';
 import { CreateAdvertComponent } from './create-advert/create-advert.component';
 import { SignupComponent } from './signup/signup.component';
+import { Router } from '@angular/router';
 
 
 const appRoutes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: { title: 'login' }
+  },
   {
     path: 'adverts',
     component: AdvertComponent,
     data: { title: 'Advert List' }
   },
-
-  { path: '',
-    redirectTo: '/createAdvert',
-    pathMatch: 'full'
-  },
   {
     path: 'createAdvert',
     component: CreateAdvertComponent,
+    data :{ title : 'create advert '}
   }
   ,
   {
@@ -37,7 +37,7 @@ const appRoutes: Routes = [
   ,
   {
     path: '',
-    redirectTo: '/createAdvert',
+    redirectTo: '/login',
     pathMatch: 'full'
   }
 ];
