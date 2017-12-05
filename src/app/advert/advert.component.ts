@@ -14,5 +14,4 @@ export class AdvertComponent implements OnInit {
       this.adverts = data;
     });
   }
-
 }

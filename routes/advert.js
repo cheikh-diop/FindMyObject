@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Advert = require('../models/Advert.js');
+var fs = require('fs');
+var decode64 = require('base-64').decode;
 
 /* GET ALL ADVERTS */
 router.get('/', function(req, res, next) {
@@ -10,6 +12,14 @@ router.get('/', function(req, res, next) {
     res.json(products);
   });
 });
+
+router.get('/search', function(req, res, next) {
+  Advert.find(function (err, products) {
+    if (err) return next(err);
+    res.json(products);
+  });
+});
+
 
 /* GET ADVERT  BY ID */
 router.get('/:id', function(req, res, next) {
@@ -27,9 +37,23 @@ router.post('/createAdvert', function(req, res, next) {
   });
 });
 
+/* SEARCH ADVERT */
+router.get('/searchAdvert' ,function(req, res, next) {
+ /* Advert.find(function (err, products) {
+    if (err) return next(err);
+    res.json(products);
+  });*/
+  console.log("test");
+});
+
 /* SAVE ADVERT SOME COLOMNS */
 router.post('/addAdvertLessUser',(req,res)=>{
-  var a =new Advert();
+var a =new Advert();
+var img = req.body.url;
+var data = img.replace(/^data:image\/\w+;base64,/, "");
+var buf = new Buffer(data, 'base64');
+fs.writeFile('src/assets/'+req.body.image_url, buf);
+
   a.title=req.body.title;
   a.description=req.body.description;
   a.type=req.body.type;
@@ -70,3 +94,14 @@ router.delete('/:id', function(req, res, next) {
 });
 
 module.exports = router;
+
+/* Advert.find({$text: {$search: "model"}})
+  .skip(20)
+  .limit(10)
+  .exec(function(err, docs) { 
+    console.log("hhhhhhh"+docs);
+    if (err) return next(err);
+    res.json(docs);
+
+
+  });*/

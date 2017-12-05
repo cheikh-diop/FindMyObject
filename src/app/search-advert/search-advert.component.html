@@ -1,0 +1,39 @@
+<div class="container">
+  <form class="form-horizontal" id="createAdvert">
+    <legend>
+     Chercher 
+    </legend>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="textinput">Search</label>
+        <div class="col-sm-4">
+          <input class="form-control" id="search" type="text" value="model" >
+       <label></label>
+        </div>
+      </div>
+      <h1>Annonce Liste</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let adv of adverts">
+            <td>{{ adv.type }}</td>
+            <td>{{ adv.description }}</td>
+            <td>Show Detail</td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+          <!-- Button -->
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-primary" id="btn-advert"type="submit" (click) = 'createAdvert()'>Envoyer </button>
+          </div>
+          </div>
+        </div>
+    <div>
+</div>
