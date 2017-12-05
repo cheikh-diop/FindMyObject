@@ -9,7 +9,6 @@ import { AdvertComponent } from './advert/advert.component';
 import { AdvertDetailComponent } from './advert-detail/advert-detail.component';
 import { LoginComponent } from './login/login.component';
 import { CreateAdvertComponent } from './create-advert/create-advert.component';
-import { SignupComponent } from './signup/signup.component';
 import { Router } from '@angular/router';
 
 
@@ -48,7 +47,6 @@ const appRoutes: Routes = [
     AdvertComponent,
     AdvertDetailComponent,
     LoginComponent,
-    SignupComponent
   ],
   imports: [
     BrowserModule,
