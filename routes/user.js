@@ -1,6 +1,6 @@
-
 var express = require('express');
 var router = express.Router();
+const passport = require('passport');
 var mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const User = require('../models/Users.js');
@@ -14,15 +14,6 @@ router.get('/', function (req, res, next) {
   });
 });
 
-/* GET User  BY ID */
-router.get('/:id', function (req, res, next) {
-  User.findById(req.params.id, function (err, post) {
-    if (err) return next(err);
-    console.log("Le Json " + post);
-    res.json(post);
-
-  });
-});
 
 /* SAVE USER USING BCRYPT TO CRYPT PASSWORD*/
 router.post('/register', function (req, res, next) {
@@ -99,5 +90,11 @@ router.delete('/:id', function (req, res, next) {
   });
 });
 
-module.exports = router;
+// Profile
+router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
+  
+  res.json({user: req.user});
+  
+});
 
+module.exports = router;

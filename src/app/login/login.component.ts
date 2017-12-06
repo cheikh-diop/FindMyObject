@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { Http, Headers } from '@angular/http';
 import { Subscriber } from 'rxjs/Subscriber';
+import { FlashMessagesService } from 'ngx-flash-messages';
+import 'rxjs/add/operator/map'
+
 
 @Component({
   selector: 'app-login',
@@ -10,6 +13,8 @@ import { Subscriber } from 'rxjs/Subscriber';
 })
 
 export class LoginComponent implements OnInit {
+
+  authToken: any;
   user1 =
     {
       email: "",
@@ -34,30 +39,63 @@ export class LoginComponent implements OnInit {
       }
     };
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: Http, private flashMessage: FlashMessagesService) { }
 
   ngOnInit() {
 
   }
+
+
   logIn() {
-    this.http.post('/user/authenticate', this.user1)
-      .subscribe(res => {
-        console.log(res);
 
-      }, (err) => {
+    if (this.validateRegister(this.user1)) {
 
-        console.log(err);
-      }
-      );
+      this.http.post('http://localhost:3000/user/authenticate', this.user1)
+        .map(res => res.json())
+        .subscribe(data => {
+          if (data.success) {
+            this.storeUserData(data.token, data.user);
+            this.flashMessage.show("Bonjour  " + data.user.name + " vous etes maintenant connecte ", {
+              classes: ['alert', 'alert-success'], // You can pass as many classes as you need
+              timeout: 5000, // Default is 3000
+            });
+            this.router.navigate(['dashboard']);
+
+          } else {
+            this.flashMessage.show(data.msg, {
+              classes: ['alert', 'alert-danger'], // You can pass as many classes as you need
+              timeout: 1000, // Default is 3000
+            });
+          }
 
 
+        }, (err) => {
+
+          console.log(err);
+
+        }
+        );
+    }
+    else {
+      this.flashMessage.show('Veuillez saisir une adresse mail et mot de passe', {
+        classes: ['alert', 'alert-danger'], // You can pass as many classes as you need
+        timeout: 1000, // Default is 3000
+      });
+    }
 
   }
+
   createUser() {
 
-    this.http.post('/user/register', this.user)
-      .subscribe(res => {
-        console.log(res);
+    this.http.post('http://localhost:3000/user/register', this.user)
+      .map(res => res.json())
+      .subscribe(data => {
+
+        this.flashMessage.show("Vous pouvez vous connectez maintenant", {
+          classes: ['alert', 'alert-danger'], // You can pass as many classes as you need
+          timeout: 1000, // Default is 3000
+        });
+
 
       }, (err) => {
 
@@ -67,5 +105,61 @@ export class LoginComponent implements OnInit {
 
 
   }
+  validateRegister(user: any) {
+
+    if (user.email == "" || user.password == "") {
+
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  storeUserData(token, user) {
+
+    localStorage.setItem('id_token', token);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.authToken = token;
+    
+    this.user1 = user;
+
+  }
+
+  logOut() {
+
+    this.authToken = null;
+    this.user = null;
+    localStorage.clear;
+
+
+  }
+  getProfile() {
+    let headers = new Headers();
+    //console.log("la valeur du token avant le load"+this.authToken);
+    this.loadToken();
+    //console.log("la valeur du token "+this.authToken);
+    headers.append('Authorization', this.authToken)
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:3000/user/profile', { headers: headers })
+      .map(res => res.json());
+      
+  }
+
+  loadToken() {
+    const token = localStorage.getItem('id_token');
+    this.authToken = token;
+
+  }
+
+  loggedIn(){
+      if (this.authToken!=null){
+        
+        return true;
+      }
+    else {
+      return false;
+    }
+  }
+
 
 }
