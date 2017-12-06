@@ -18,7 +18,7 @@ export class AdvertDetailComponent implements OnInit {
     }
   
     getAdvertDetail(id) {
-      this.http.get('/advert/'+id).subscribe(data => {
+      this.http.get('http://localhost:3000/advert/'+id).subscribe(data => {
         this.advert = data;
       });
     }

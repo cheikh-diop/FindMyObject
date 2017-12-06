@@ -1,26 +1,22 @@
+<div class="container">
+  <h2>Liste des annonces </h2>
+  <p>Cliquer sur l'image pour voir l'annonce </p>
+  <div class="row">
+    <div *ngFor="let advert of adverts" class="col-md-3">
+      <div class="thumbnail  ">
+        <p>{{ advert.date_time }}</p>
+        <img src="../../assets/{{advert.image_url}}" alt="{{advert.image_url}}" style="width:65%">
+        <div class="caption">
+          <p>{{ advert.title }}</p>
+          <p>{{ advert.type }}</p>
 
-<body>
-    <div class="container">
-      <h2>Liste des annonces </h2>
-      <p>Cliquer sur l'image pour voir l'annonce </p>
-      <div class="row" >
-        <div *ngFor="let advert of adverts" class="col-md-3">
-          <div class="thumbnail  ">
-            <p>{{ advert.date_time }}</p>
-              <img src="../../assets/{{advert.image_url}}" alt="{{advert.image_url}}" style="width:65%">
-              <div  class="caption">
-                  <p>{{ advert.title }}</p>  
-                <p>{{ advert.type }}</p>
-                  
-                  <p style="white-space: nowrap;
+          <p style="white-space: nowrap;
                   width: 150px;
                   overflow: hidden;
-                  text-overflow: ellipsis;" >{{ advert.description }}</p> 
-              </div>
-              <a class="btn btn-primary"   [routerLink]="['/advert-detail', advert._id]"> Voir Annonce </a>
-          </div>
+                  text-overflow: ellipsis;">{{ advert.description }}</p>
         </div>
+        <a class="btn btn-primary" [routerLink]="['/advert-detail', advert._id]"> Voir Annonce </a>
       </div>
     </div>
-    </body>
-    
+  </div>
+</div>
