@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { Http, Headers } from '@angular/http';
 import { Subscriber } from 'rxjs/Subscriber';
 import { FlashMessagesService } from 'ngx-flash-messages';
 import {tokenNotExpired} from 'angular2-jwt';
 import 'rxjs/add/operator/map'
-
 
 @Component({
   selector: 'app-login',
