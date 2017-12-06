@@ -18,12 +18,15 @@ export class NavbarComponent implements OnInit {
   onLogOutClick() {
 
     this.auth.logOut();
+    
+    
     console.log("you clicked on logout");
     this.flashMsg.show("Vous etes deconnecte maintenant", {
       classes: ['alert', 'alert-danger'], // You can pass as many classes as you need
       timeout: 3000, // Default is 3000
     });    
-    this.router.navigate(['/login']);
+    
+    this.router.navigate(['/home']);
     return false;
     
 

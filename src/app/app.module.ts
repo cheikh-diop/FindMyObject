@@ -14,8 +14,10 @@ import { Router } from '@angular/router';
 import { FlashMessagesModule } from 'ngx-flash-messages/';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ProfileComponent } from './profile/profile.component';
-import {AuthGuardService} from './auth-guard.service'
+import {AuthGuardService} from './auth-guard.service';
+import { HomeComponent } from './home/home.component';
+
+import { MessengerComponent } from './messenger/messenger.component'
 
 const appRoutes: Routes = [
   {
@@ -26,13 +28,23 @@ const appRoutes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    //canActivate:[AuthGuardService],
+    canActivate:[AuthGuardService],
     data: { title: 'login' }
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    data: { title: 'home' }
+  },
+  {
+    path: 'messenger',
+    component: MessengerComponent,
+    data: { title: 'home' }
   },
   {
     path: 'adverts',
     component: AdvertComponent,
-    //canActivate:[AuthGuardService],
+    canActivate:[AuthGuardService],
     data: { title: 'Advert List' }
   },
   {
@@ -43,13 +55,13 @@ const appRoutes: Routes = [
   ,
   {
     path: 'advert-detail/:id',
-    //canActivate:[AuthGuardService],
+    canActivate:[AuthGuardService],
     component: AdvertDetailComponent
   }
   ,
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/home',
     pathMatch: 'full'
   }
 ];
@@ -62,7 +74,8 @@ const appRoutes: Routes = [
     LoginComponent,
     DashboardComponent,
     NavbarComponent,
-    ProfileComponent,
+    HomeComponent,
+    MessengerComponent,
   ],
   imports: [
     BrowserModule,
