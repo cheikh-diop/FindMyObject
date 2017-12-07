@@ -16,14 +16,19 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {AuthGuardService} from './auth-guard.service';
 import { HomeComponent } from './home/home.component';
-
-import { MessengerComponent } from './messenger/messenger.component'
+import { MyadvertComponent } from './myadvert/myadvert.component'
 
 const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
     data: { title: 'login' }
+  },
+  {
+    path: 'myadvert',
+    component: MyadvertComponent,
+    canActivate:[AuthGuardService],    
+    data: { title: 'home' }
   },
   {
     path: 'dashboard',
@@ -37,8 +42,8 @@ const appRoutes: Routes = [
     data: { title: 'home' }
   },
   {
-    path: 'messenger',
-    component: MessengerComponent,
+    path: 'myadvert',
+    component: MyadvertComponent,
     data: { title: 'home' }
   },
   {
@@ -61,7 +66,7 @@ const appRoutes: Routes = [
   ,
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/dashboard',
     pathMatch: 'full'
   }
 ];
@@ -75,7 +80,7 @@ const appRoutes: Routes = [
     DashboardComponent,
     NavbarComponent,
     HomeComponent,
-    MessengerComponent,
+    MyadvertComponent,
   ],
   imports: [
     BrowserModule,
