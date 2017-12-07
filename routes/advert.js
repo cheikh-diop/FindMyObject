@@ -14,10 +14,22 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/search', function(req, res, next) {
-  Advert.find(function (err, products) {
+  console.log("5a19942c4810b41d5d9aa4fb");
+
+  Advert.find({$text: {$search: "5a19942c4810b41d5d9aa4fb"}})
+  .exec(function(err, docs) { 
+    console.log("hhhhhhh"+docs);
     if (err) return next(err);
-    res.json(products);
+    res.json(docs);
+
+
   });
+
+  /*Advert.findById("5a19942c4810b41d5d9aa4fb", function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });*/
+ 
 });
 
 

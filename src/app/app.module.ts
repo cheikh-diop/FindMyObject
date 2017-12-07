@@ -25,7 +25,7 @@ const appRoutes: Routes = [
     data: { title: 'Advert List' }
   },
   { path: '',
-    redirectTo: '/createAdvert',
+    redirectTo: '/SearchAdvert',
     pathMatch: 'full'
   },
   {

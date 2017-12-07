@@ -7,16 +7,17 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./search-advert.component.css']
 })
 export class SearchAdvertComponent implements OnInit {
-  adverts :any;
+  advert = {};
+ // search='';
  
   constructor(private http: HttpClient) {}
 
 
   createAdvert() {
+  //  this.advert.push(this.search);
     this.http.get('/advert/search').subscribe(data => {
-      this.adverts = data;
+      this.advert = data;
     });
-    alert( this.adverts);
   }
 
   ngOnInit() {

@@ -6,27 +6,25 @@
     <div class="form-group">
         <label class="col-sm-2 control-label" for="textinput">Search</label>
         <div class="col-sm-4">
-          <input class="form-control" id="search" type="text" value="model" >
-       <label></label>
+          <input name="search" class="form-control" id="search" type="text" value="" >
+       <label>{{ advert.search}}</label>
         </div>
       </div>
-      <h1>Annonce Liste</h1>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Type</th>
-            <th>Description</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let adv of adverts">
-            <td>{{ adv.type }}</td>
-            <td>{{ adv.description }}</td>
-            <td>Show Detail</td>
-          </tr>
-        </tbody>
-      </table>
+      <dl class="list">
+        <dt>Type annonce</dt>
+        <dd>{{ advert.type }}</dd>
+        <dt>Description</dt>
+        <dd>{{ advert.description }}</dd>
+        <dt>mark </dt>
+        <dd>{{ advert.mark }}</dd>
+        <dt>model </dt>
+        <dd>{{ advert.model }}</dd>
+        <dt>date et heure</dt>
+        <dd>{{ advert.date_time }}</dd>
+        <h3> Adresse </h3>
+        
+        <dd>{{advert.address?.city}}</dd>
+      </dl>
       <div>
           <!-- Button -->
           <div class="form-group">
