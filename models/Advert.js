@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 
 var AdvertSchema = new mongoose.Schema({
-    
+        title:String,
         type: String,
         description: String,
         mark: String,

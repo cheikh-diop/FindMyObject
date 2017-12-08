@@ -10,7 +10,7 @@ export class AdvertComponent implements OnInit {
   adverts : any
   constructor(private http : HttpClient) { }
   ngOnInit() {
-    this.http.get('/advert').subscribe(data => {
+    this.http.get('http://localhost:3000/advert').subscribe(data => {
       this.adverts = data;
     });
   }
