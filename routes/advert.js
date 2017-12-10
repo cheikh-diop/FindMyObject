@@ -13,25 +13,74 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/search', function(req, res, next) {
-  console.log("5a19942c4810b41d5d9aa4fb");
-
-  Advert.find({$text: {$search: "5a19942c4810b41d5d9aa4fb"}})
-  .exec(function(err, docs) { 
-    console.log("hhhhhhh"+docs);
-    if (err) return next(err);
-    res.json(docs);
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 
-  });
+router.get('/searchField', function(req, res, next) {
+  console.log(req.query.model);
+  console.log(req.query.type);
 
-  /*Advert.findById("5a19942c4810b41d5d9aa4fb", function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });*/
- 
+  const regexModel = new RegExp(escapeRegex(req.query.model), 'gi');
+  const regexType = new RegExp(escapeRegex(req.query.type), 'gi');
+  const regexMarc = new RegExp(escapeRegex(req.query.mark), 'gi');
+  const regexCity = new RegExp(escapeRegex(req.query.city), 'gi');
+  const regexCountry = new RegExp(escapeRegex(req.query.country), 'gi');
+
+
+  Advert.find({$or:[{ "model": regexModel},{ "type":regexType},{ "mark":regexMarc},{ "country":regexCountry}, { "city":regexCity}]}, function (err, results) {
+    if (err) {
+        console.log(err);
+    } else {
+        res.json(results);
+        console.log(results);
+        console.log("TEST");
+    }
+});
 });
 
+
+
+
+
+router.get('/search', function(req, res, next) {
+  
+ /* const regex = new RegExp(escapeRegex("model"), 'gi');
+  Advert.find({ "model": regex }, function (err, results) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log(results);
+        console.log("TEST");
+    }
+});*/
+
+//console.log("happy!!!!"+req.query.search);
+var keyword = req.query.search;
+
+var find = {'$text':{'$search':keyword}};
+
+Advert.find(find)
+.exec(function(err, docs) { 
+  
+  if (err) return next(err);
+ 
+  console.log(JSON.stringify(docs));
+  res.json(docs);
+});
+
+//TEST**********
+/*Advert.find(find, function (err, results) {
+  if (err) {
+      console.log(err);
+  } else {
+    console.log(JSON.stringify(results));
+    res.json(results);
+   
+  }
+});*/
+});
 
 /* GET ADVERT  BY ID */
 router.get('/:id', function(req, res, next) {
@@ -49,14 +98,7 @@ router.post('/createAdvert', function(req, res, next) {
   });
 });
 
-/* SEARCH ADVERT */
-router.get('/searchAdvert' ,function(req, res, next) {
- /* Advert.find(function (err, products) {
-    if (err) return next(err);
-    res.json(products);
-  });*/
-  console.log("test");
-});
+
 
 /* SAVE ADVERT SOME COLOMNS */
 router.post('/addAdvertLessUser',(req,res)=>{
@@ -104,6 +146,8 @@ router.delete('/:id', function(req, res, next) {
     res.json(post);
   });
 });
+
+
 
 module.exports = router;
 

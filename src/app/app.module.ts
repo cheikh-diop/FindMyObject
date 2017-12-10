@@ -35,7 +35,7 @@ const appRoutes: Routes = [
   {
     path: 'SearchAdvert',
     component: SearchAdvertComponent,
-  }
+  },
 
 ];
 

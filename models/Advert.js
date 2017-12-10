@@ -16,9 +16,17 @@ var AdvertSchema = new mongoose.Schema({
             city: String,
             code_city: Number,
             country: String
-        }
+        },
+        
     });
-    AdvertSchema.index({'$**': 'text'});
-    var advertise = mongoose.model('advert',AdvertSchema);
+
+  
+   
+   AdvertSchema.index({'$**': 'text'});
+  //AdvertSchema.index({"mark":"text", "model":"text","title":"text" });
+  //AdvertSchema.index({"model":"text" });
+ // AdvertSchema.index({"title":"text" });
+
+var advertise = mongoose.model('advert',AdvertSchema);
     
     module.exports = advertise;
