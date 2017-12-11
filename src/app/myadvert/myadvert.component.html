@@ -1,3 +1,30 @@
-<p>
-  myadvert works!
-</p>
+<h1>
+  Mes annonces   <a class="btn btn-primary" [routerLink]="['/createAdvert']"> Creer annonce </a>
+ </h1>
+<br/>
+<table class="table">
+  <tr>
+    <th>Numero</th>
+    <th>titre</th>
+    <th>type</th>
+    <th>description</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let ad of advert; let i = index">
+    <td>{{i + 1}}</td>
+    <td>{{ad.title}}</td>
+    <td>{{ad.type}}</td>
+    <td>{{ad.description}}</td>
+    <td>
+        <a class="btn btn-primary" [routerLink]="['/advert-detail', ad._id]"> Voir Annonce </a>
+    </td>
+    <td>
+        <button type="button" class="btn btn-default edit-btn" ng-click="showProjectForm(project)">
+            <span class="glyphicon glyphicon-pencil">Modifier</span>
+          </button>
+      <button type="button" class="btn btn-default delete-btn" ng-click="deleteProject(project)">
+        <span class="glyphicon glyphicon-remove">Supprimer</span>
+      </button>
+    </td>
+  </tr>
+</table>

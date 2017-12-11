@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { LoginComponent } from '../login/login.component'
 import { Http, RequestOptions, Headers, URLSearchParams, ResponseContentType, Response } from '@angular/http';
 @Component({
   selector: 'app-create-advert',
@@ -13,18 +14,58 @@ export class CreateAdvertComponent implements OnInit {
   advert = {};
   url = '';
   image_path = '';
-  constructor(private router: Router, private http: HttpClient) { }
+  user = {
+    id:"",
+    name: "",
+    last_name: "",
+    email: "",
+    password: "",
+    advert: {},
+    address: {
+      city: "",
+      city_code: "",
+      street: "",
+      country: ""
+    }
+  }
+  constructor(private router: Router, private http: HttpClient, private auth: LoginComponent) { }
 
   createAdvert() {
-
-    this.http.post('http://localhost:3000/advert/addAdvertLessUser', this.advert)
-      .subscribe(res => {
-        alert("Votre annonce a été créé avec succés");
-        console.log("RESULTAT" + res);
-      }, (err) => {
-        console.log(err);
-      }
-      );
+    // Si il n y a pas de connexion cela veut dire c'est un ajout d'objet trouve
+    if (!this.auth.loggedIn) {
+      this.http.post('http://localhost:3000/advert/addAdvertLessUser', this.advert)
+        .subscribe(res => {
+          alert("Votre annonce a été créé avec succés");
+          console.log("RESULTAT" + res);
+        }, (err) => {
+          console.log(err);
+        }
+        );
+    }// Si il a une connexion cela veut dire c'est un ajout d'objet perdu
+     else {
+      this.auth.getProfile().subscribe(profile => {
+        this.user = profile.user;
+  
+  
+      },
+        err => {
+          console.log(err);
+          return false;
+        }
+      )
+      this.user.advert = this.advert;
+      
+      
+      this.http.put('http://localhost:3000/user/addUserAdvert', this.user)
+        .subscribe(res => {
+          alert("Votre annonce a été créé avec succés");
+          console.log("RESULTAT" + res);
+        }, (err) => {
+          
+          console.log(err);
+        }
+        )
+    };
   }
 
   readUrl(event: any) {
@@ -47,6 +88,12 @@ export class CreateAdvertComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
     }
   }
+
+  userCreateAdvert() {
+
+
+  }
+
   ngOnInit() {
   }
 }

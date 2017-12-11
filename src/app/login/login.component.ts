@@ -26,10 +26,13 @@ export class LoginComponent implements OnInit {
 
   user =
     {
+
+      id:"",
       name: "",
       last_name: "",
       email: "",
       password: "",
+      advert : [],
       address: {
         city: "",
         city_code: "",
@@ -56,9 +59,9 @@ export class LoginComponent implements OnInit {
         .subscribe(data => {
           if (data.success) {
             this.storeUserData(data.token, data.user);
-            this.flashMessage.show("Bonjour  " + data.user.name + " vous etes maintenant connecte ", {
+            this.flashMessage.show("Bonjour  " + data.user.id + " vous etes maintenant connecte ", {
               classes: ['alert', 'alert-success'], // You can pass as many classes as you need
-              timeout: 5000, // Default is 3000
+              timeout: 3000, // Default is 3000
             });
             this.router.navigate(['dashboard']);
 
@@ -122,7 +125,7 @@ export class LoginComponent implements OnInit {
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
     
-    this.user1 = user;
+    this.user = user;
 
   }
 

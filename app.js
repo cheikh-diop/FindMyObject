@@ -16,6 +16,9 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 'extended': 'false' }));
 app.use(express.static(path.join(__dirname, 'dist')));
+// Permit server to receive heavy file
+app.use(bodyParser({limit: '50mb'}));
+
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
