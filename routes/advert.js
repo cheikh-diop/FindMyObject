@@ -66,7 +66,7 @@ Advert.find(find)
   
   if (err) return next(err);
  
-  console.log(JSON.stringify(docs));
+  //console.log(JSON.stringify(docs));
   res.json(docs);
 });
 
@@ -147,7 +147,17 @@ router.delete('/:id', function(req, res, next) {
   });
 });
 
+/* MATCH ADVERT */
+router.post('/match', function(req, res, next) {
 
+  console.log("contenue de body"+req.body);
+  Advert.find({$and: [{type:"Trouve"}, {model: 's6'}]}, function (err, doc){
+    if (err) return next(err);
+    console.log("le resultat"+JSON.stringify(doc));
+    res.json(doc);
+    
+});
+});
 
 module.exports = router;
 

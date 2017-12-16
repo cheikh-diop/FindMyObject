@@ -20,6 +20,7 @@ import { MyadvertComponent } from './myadvert/myadvert.component';
 import { SearchAdvertComponent } from './search-advert/search-advert.component';
 import { ReactiveFormsModule } from "@angular/forms";
 
+
 const appRoutes: Routes = [
   {
     path: 'login',
@@ -72,6 +73,7 @@ const appRoutes: Routes = [
     component: AdvertDetailComponent
   }
   ,
+  
   {
     path: '',
     redirectTo: '/dashboard',
@@ -90,7 +92,7 @@ const appRoutes: Routes = [
     HomeComponent,
     MyadvertComponent,
     SearchAdvertComponent,
-  ],
+    ],
   imports: [
     ReactiveFormsModule,
     BrowserModule,

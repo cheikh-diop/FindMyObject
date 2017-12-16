@@ -14,6 +14,7 @@ export class MyadvertComponent implements OnInit {
   user = { 
     _id :""
   }
+  match = false;
   constructor(private router: Router, private http: Http, private auth: LoginComponent) { }
 
   ngOnInit() {
@@ -34,6 +35,14 @@ export class MyadvertComponent implements OnInit {
     
 
     
+  }
+
+  matchAdvert(ad){
+    this.match = true;
+    this.http.post('http://localhost:3000/advert/match',ad).subscribe(data => {
+
+     });
+
   }
 
 }

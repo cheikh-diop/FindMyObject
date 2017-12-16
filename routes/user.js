@@ -79,7 +79,7 @@ router.post('/authenticate', (req, res, next) => {
 /* UPDATE User (add avert ) */
 router.put('/addUserAdvert', function (req, res, next) {
 
-  console.log(req.body._id);
+ // console.log(req.body._id);
 
   
 
@@ -93,7 +93,7 @@ router.put('/addUserAdvert', function (req, res, next) {
         res.json({ success: true, msg: 'probleme ajout' });
       }
     });
-    console.log("variable " + post);
+   // console.log("variable " + post);
   });
 
 });
@@ -120,7 +120,7 @@ router.get('/getUserAdvert/:id', (req, res, next) => {
   User.getUserAdvert(req.params.id, function (err, post) {
     if (err) return next(err);
     res.json(post)
-    console.log(post)
+  //  console.log(post)
   });
 
 
