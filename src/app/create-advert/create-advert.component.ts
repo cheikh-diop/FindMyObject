@@ -67,10 +67,12 @@ export class CreateAdvertComponent implements OnInit {
   }
 
   userCreateAdvert() {
+
     console.log("utilisateur creer annonce")
+    
     this.auth.getProfile().subscribe(profile => {
       this.user = profile.user;
-
+      alert("utilisateur "+this.user)
 
     },
       err => {
@@ -80,7 +82,7 @@ export class CreateAdvertComponent implements OnInit {
     )
     this.user.advert = this.advert;
     
-    
+    console.log("annonce "+JSON.stringify(this.user));
     this.http.put('http://localhost:3000/user/addUserAdvert', this.user)
       .subscribe(res => {
         alert("Votre annonce a été créé avec succés");

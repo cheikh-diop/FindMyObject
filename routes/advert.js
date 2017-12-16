@@ -152,7 +152,7 @@ router.post('/match', function(req, res, next) {
 // ca passe il ma donner ce que je veux c est un "et"
   //console.log("contenue de body"+req.query.type);
   
-  Advert.find({ $and: [ { type : req.body.type}, { title: req.body.title }] }, function (err, doc){
+  Advert.find({ $and: [ { type : "Trouve"}, { mark: req.body.mark }] }, function (err, doc){
     if (err) return next(err);
     
     res.json(doc);
