@@ -148,12 +148,13 @@ router.delete('/:id', function(req, res, next) {
 });
 
 /* MATCH ADVERT */
-router.post('/match', function(req, res, next) {
-
-  console.log("contenue de body"+req.body);
-  Advert.find({$and: [{type:"Trouve"}, {model: 's6'}]}, function (err, doc){
+router.put('/match', function(req, res, next) {
+// ca passe il ma donner ce que je veux c est un "et"
+  //console.log("contenue de body"+req.query.type);
+  
+  Advert.find({ $and: [ { type : "Perdu"}, { title: "test perte iphone" }] }, function (err, doc){
     if (err) return next(err);
-    console.log("le resultat"+JSON.stringify(doc));
+    
     res.json(doc);
     
 });

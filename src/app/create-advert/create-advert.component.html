@@ -15,7 +15,7 @@
         <div class="col-sm-10">
           <select [(ngModel)]='advert.type' name="type" class="form-control" id="type" aria-placeholder="Choisir le type de votre annonce">
             <option *ngIf="auth.loggedIn()">Perdu</option>
-            <option *ngIf="!auth.loggedIn()">Trouvé</option>
+            <option *ngIf="!auth.loggedIn()">Trouve</option>
           </select>
         </div>
       </div>

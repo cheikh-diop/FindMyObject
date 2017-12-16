@@ -40,14 +40,14 @@
   <th>description</th>
   <th></th>
 </tr>
-<tr *ngFor="let ad of advert; let i = index">
+<tr *ngFor="let adv of matchadvert; let i = index">
   <td>{{i + 1}}</td>
-  <td>{{ad.title}}</td>
-  <td>{{ad.type}}</td>
-  <td>{{ad.description}}</td>
+  <td>{{advert.title}}</td>
+  <td>{{adv.type}}</td>
+  <td>{{adv.description}}</td>
   <td>
-      <a class="btn btn-primary" [routerLink]="['/advert-detail', ad._id]"> Voir Annonce </a>
-      <a class="btn btn-primary" > Match </a>
+      <a class="btn btn-primary" [routerLink]="['/advert-detail', adv._id]"> Voir Annonce </a>
+      
       
     </td>
   <td>

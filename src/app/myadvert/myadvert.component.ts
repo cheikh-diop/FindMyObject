@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient ,HttpParams} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component'
 import { Http, RequestOptions, Headers, URLSearchParams, ResponseContentType, Response } from '@angular/http';
@@ -14,6 +14,7 @@ export class MyadvertComponent implements OnInit {
   user = { 
     _id :""
   }
+  matchadvert:any;
   match = false;
   constructor(private router: Router, private http: Http, private auth: LoginComponent) { }
 
@@ -39,10 +40,11 @@ export class MyadvertComponent implements OnInit {
 
   matchAdvert(ad){
     this.match = true;
-    this.http.post('http://localhost:3000/advert/match',ad).subscribe(data => {
-
+     console.log("parameter"+ad.type);
+     this.http.put('http://localhost:3000/advert/match',ad).subscribe(data => {
+      //this.matchadvert=data;
      });
-
-  }
+  
+    }
 
 }
