@@ -41,8 +41,10 @@ export class MyadvertComponent implements OnInit {
   matchAdvert(ad){
     this.match = true;
      console.log("parameter"+ad.type);
-     this.http.put('http://localhost:3000/advert/match',ad).subscribe(data => {
-      //this.matchadvert=data;
+     this.http.post('http://localhost:3000/advert/match',ad)
+     .map(res => res.json()).
+     subscribe(data => {
+      this.matchadvert=data;
      });
   
     }

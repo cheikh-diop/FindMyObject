@@ -148,7 +148,7 @@ router.delete('/:id', function(req, res, next) {
 });
 
 /* MATCH ADVERT */
-router.put('/match', function(req, res, next) {
+router.post('/match', function(req, res, next) {
 // ca passe il ma donner ce que je veux c est un "et"
   //console.log("contenue de body"+req.query.type);
   
@@ -158,7 +158,8 @@ router.put('/match', function(req, res, next) {
     res.json(doc);
     
 });
-});
+    
+}); 
 
 module.exports = router;
 
