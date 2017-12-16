@@ -16,7 +16,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {AuthGuardService} from './auth-guard.service';
 import { HomeComponent } from './home/home.component';
-import { MyadvertComponent } from './myadvert/myadvert.component'
+import { MyadvertComponent } from './myadvert/myadvert.component';
+import { SearchAdvertComponent } from './search-advert/search-advert.component';
+import { ReactiveFormsModule } from "@angular/forms";
 
 const appRoutes: Routes = [
   {
@@ -28,7 +30,13 @@ const appRoutes: Routes = [
     path: 'myadvert',
     component: MyadvertComponent,
     canActivate:[AuthGuardService],    
-    data: { title: 'home' }
+    data: { title: 'myadvert' }
+  },
+  {
+    path: 'searchAdvert',
+    component: SearchAdvertComponent,
+    canActivate:[AuthGuardService],    
+    data: { title: 'searchadvert' }
   },
   {
     path: 'dashboard',
@@ -81,8 +89,10 @@ const appRoutes: Routes = [
     NavbarComponent,
     HomeComponent,
     MyadvertComponent,
+    SearchAdvertComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     FormsModule, 
     FlashMessagesModule,
