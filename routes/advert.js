@@ -158,7 +158,8 @@ router.post('/match', function(req, res, next) {
     res.json(doc);
     
 });
-});
+    
+}); 
 
 module.exports = router;
 

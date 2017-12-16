@@ -40,6 +40,7 @@ export class MyadvertComponent implements OnInit {
 
   
   matchAdvert(ad) {
+    // une autre annonce regarde 
     this.match = true;
     console.log("parameter" + ad.type);
     this.http.post('http://localhost:3000/advert/match', ad)
