@@ -97,7 +97,8 @@
       <!-- Button -->
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button class="btn btn-primary" id="btn-advert" type="submit" (click)='createAdvert()'>Envoyer </button>
+          <button class="btn btn-primary" *ngIf="this.auth.loggedIn" id="btn-advert" type="submit" (click)='createAdvert()'>Envoyer </button>
+          <button class="btn btn-primary" *ngIf="!this.auth.loggedIn" id="btn-advert" type="submit" (click)='userCreateAdvert()'>Envoyer </button>
           <button class="btn btn-default" type="reset">Annuler </button>
         </div>
       </div>

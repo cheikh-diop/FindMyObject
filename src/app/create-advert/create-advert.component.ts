@@ -32,7 +32,8 @@ export class CreateAdvertComponent implements OnInit {
 
   createAdvert() {
     // Si il n y a pas de connexion cela veut dire c'est un ajout d'objet trouve
-    if (!this.auth.loggedIn) {
+    console.log("creer annonce")
+    
       this.http.post('http://localhost:3000/advert/addAdvertLessUser', this.advert)
         .subscribe(res => {
           alert("Votre annonce a été créé avec succés");
@@ -41,31 +42,7 @@ export class CreateAdvertComponent implements OnInit {
           console.log(err);
         }
         );
-    }// Si il a une connexion cela veut dire c'est un ajout d'objet perdu
-     else {
-      this.auth.getProfile().subscribe(profile => {
-        this.user = profile.user;
-  
-  
-      },
-        err => {
-          console.log(err);
-          return false;
-        }
-      )
-      this.user.advert = this.advert;
-      
-      
-      this.http.put('http://localhost:3000/user/addUserAdvert', this.user)
-        .subscribe(res => {
-          alert("Votre annonce a été créé avec succés");
-          console.log("RESULTAT" + res);
-        }, (err) => {
-          
-          console.log(err);
-        }
-        )
-    };
+    
   }
 
   readUrl(event: any) {
@@ -90,7 +67,29 @@ export class CreateAdvertComponent implements OnInit {
   }
 
   userCreateAdvert() {
+    console.log("utilisateur creer annonce")
+    this.auth.getProfile().subscribe(profile => {
+      this.user = profile.user;
 
+
+    },
+      err => {
+        console.log(err);
+        return false;
+      }
+    )
+    this.user.advert = this.advert;
+    
+    
+    this.http.put('http://localhost:3000/user/addUserAdvert', this.user)
+      .subscribe(res => {
+        alert("Votre annonce a été créé avec succés");
+        console.log("RESULTAT" + res);
+      }, (err) => {
+        
+        console.log(err);
+      }
+      )
 
   }
 
