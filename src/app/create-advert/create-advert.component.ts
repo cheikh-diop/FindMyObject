@@ -15,7 +15,7 @@ export class CreateAdvertComponent implements OnInit {
   url = '';
   image_path = '';
   user = {
-    id:"",
+    id: "",
     name: "",
     last_name: "",
     email: "",
@@ -29,20 +29,34 @@ export class CreateAdvertComponent implements OnInit {
     }
   }
   constructor(private router: Router, private http: HttpClient, private auth: LoginComponent) { }
-
+  
+  ngOnInit() {
+      if (localStorage.getItem('user')){
+        this.auth.getProfile().subscribe(profile => {
+          this.user = profile.user;
+          alert("utilisateur " + this.user)
+    
+        },
+          err => {
+            console.log(err);
+            return false;
+          }
+        )
+      }
+    }
   createAdvert() {
     // Si il n y a pas de connexion cela veut dire c'est un ajout d'objet trouve
     console.log("creer annonce")
-    
-      this.http.post('http://localhost:3000/advert/addAdvertLessUser', this.advert)
-        .subscribe(res => {
-          alert("Votre annonce a été créé avec succés");
-          console.log("RESULTAT" + res);
-        }, (err) => {
-          console.log(err);
-        }
-        );
-    
+
+    this.http.post('http://localhost:3000/advert/addAdvertLessUser', this.advert)
+      .subscribe(res => {
+        alert("Votre annonce a été créé avec succés");
+        console.log("RESULTAT" + res);
+      }, (err) => {
+        console.log(err);
+      }
+      );
+
   }
 
   readUrl(event: any) {
@@ -69,32 +83,22 @@ export class CreateAdvertComponent implements OnInit {
   userCreateAdvert() {
 
     console.log("utilisateur creer annonce")
-    
-    this.auth.getProfile().subscribe(profile => {
-      this.user = profile.user;
-      alert("utilisateur "+this.user)
 
-    },
-      err => {
-        console.log(err);
-        return false;
-      }
-    )
+
     this.user.advert = this.advert;
-    
-    console.log("annonce "+JSON.stringify(this.user));
+
+    console.log("annonce " + JSON.stringify(this.user));
     this.http.put('http://localhost:3000/user/addUserAdvert', this.user)
       .subscribe(res => {
         alert("Votre annonce a été créé avec succés");
         console.log("RESULTAT" + res);
       }, (err) => {
-        
+
         console.log(err);
       }
       )
 
   }
 
-  ngOnInit() {
-  }
+  
 }
