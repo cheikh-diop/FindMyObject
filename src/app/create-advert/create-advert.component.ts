@@ -34,7 +34,7 @@ export class CreateAdvertComponent implements OnInit {
       if (localStorage.getItem('user')){
         this.auth.getProfile().subscribe(profile => {
           this.user = profile.user;
-          alert("utilisateur " + this.user)
+          //salert("utilisateur " + this.user)
     
         },
           err => {
@@ -46,7 +46,7 @@ export class CreateAdvertComponent implements OnInit {
     }
   createAdvert() {
     // Si il n y a pas de connexion cela veut dire c'est un ajout d'objet trouve
-    console.log("creer annonce")
+    //console.log("creer annonce")
 
     this.http.post('http://localhost:3000/advert/addAdvertLessUser', this.advert)
       .subscribe(res => {
@@ -82,12 +82,12 @@ export class CreateAdvertComponent implements OnInit {
 
   userCreateAdvert() {
 
-    console.log("utilisateur creer annonce")
+    //console.log("utilisateur creer annonce")
 
 
     this.user.advert = this.advert;
 
-    console.log("annonce " + JSON.stringify(this.user));
+    //console.log("annonce " + JSON.stringify(this.user));
     this.http.put('http://localhost:3000/user/addUserAdvert', this.user)
       .subscribe(res => {
         alert("Votre annonce a été créé avec succés");
