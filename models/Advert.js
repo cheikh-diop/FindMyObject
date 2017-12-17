@@ -13,7 +13,9 @@ var AdvertSchema = new mongoose.Schema({
             street: String,
             city: String,
             code_city: Number,
-            country: String
+            country: String,
+            latitude: Number,
+            longitude: Number,
         }
     });
     AdvertSchema.index({'$**': 'text'});

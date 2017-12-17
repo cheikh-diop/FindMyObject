@@ -32,7 +32,9 @@ export class CreateAdvertComponent implements OnInit {
       street: "",
       city: "",
       code_city: "",
-      country: ""
+      country: "",
+      latitude: 1,
+      longitude: 1,
   }
 
   }
@@ -53,7 +55,7 @@ export class CreateAdvertComponent implements OnInit {
       city: "",
       city_code: "",
       street: "",
-      country: ""
+      country: "",
     }
   }
   place;
@@ -97,7 +99,9 @@ export class CreateAdvertComponent implements OnInit {
     Object.assign(this.advert, {
       "country": this.country,
       "city": this.city,
-      "street": this.street
+      "street": this.street,
+      "latitude": this.latitude,
+      "longitude": this.longitude 
     });
     this.http.post('http://localhost:3000/advert/addAdvertLessUser', this.advert)
       .subscribe(res => {
@@ -136,7 +140,13 @@ export class CreateAdvertComponent implements OnInit {
       //console.log("utilisateur creer annonce")
 
     //console.log("utilisateur creer annonce")
-
+       Object.assign(this.advert, {
+      "country": this.country,
+      "city": this.city,
+      "street": this.street,
+      "latitude": this.latitude,
+      "longitude": this.longitude 
+    });
 
     this.user.advert = this.advert;
     //this.user.advert.address=this.advert.address;
@@ -198,6 +208,8 @@ export class CreateAdvertComponent implements OnInit {
             //set latitude, longitude and zoom
             this.latitude = place.geometry.location.lat();
             this.longitude = place.geometry.location.lng();
+            this.advert.address.latitude =  this.latitude ;
+            this.advert.address.longitude =  this.longitude;
             this.zoom = 20;
             alert(this.searchElementRef.nativeElement.value);
             var arrayOfStrings = this.searchElementRef.nativeElement.value.split(',');
