@@ -125,8 +125,8 @@ export class CreateAdvertComponent implements OnInit {
         "street": this.street
       });
       this.user.advert = this.advert;
-      console.log("JE SUIS LE TAB USER"+JSON.stringify(this.user))
-     console.log("JE SUIS ADVERT "+JSON.stringify(this.advert));
+      alert("JE SUIS LE TAB USER"+JSON.stringify(this.user))
+      alert(JSON.stringify(this.user.advert));
       //console.log("annonce " + JSON.stringify(this.user));
       this.http.put('http://localhost:3000/user/addUserAdvert', this.user)
         .subscribe(res => {
