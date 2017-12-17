@@ -11,6 +11,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 export class SearchAdvertComponent implements OnInit {
   advert  : any;
+  status=false;
   type='';
   mark='';
   model='';
@@ -31,21 +32,21 @@ export class SearchAdvertComponent implements OnInit {
     .set('mark', this.mark)
     .set('country', this.country)
     .set('city', this.city);
-    this.http.get('/advert/searchField',{ params: params }).subscribe(data => {
+    this.http.get('http://localhost:3000/advert/searchField',{ params: params }).subscribe(data => {
       this.advert =  data;
     });
   }
   myMethod(value:string){
   console.log(value);
+
   
- this.advert, {
-    "search": value};
+ 
    // let headers: Headers = new Headers();
    // headers.append('search', 'model1');
   
   let params = new HttpParams().set('search', value);
 
-   this.http.get('/advert/search', { params: params }).subscribe(data => {
+   this.http.get('http://localhost:3000/advert/search', { params: params }).subscribe(data => {
    this.advert =  data;
   });
   }
