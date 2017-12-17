@@ -17,14 +17,47 @@
     <td>{{ad.description}}</td>
     <td>
         <a class="btn btn-primary" [routerLink]="['/advert-detail', ad._id]"> Voir Annonce </a>
-    </td>
+        <a class="btn btn-primary" (click)='matchAdvert(ad)' > Match </a>
+        
+      </td>
     <td>
-        <button type="button" class="btn btn-default edit-btn" ng-click="showProjectForm(project)">
+        <button type="button" class="btn btn-default edit-btn">
             <span class="glyphicon glyphicon-pencil">Modifier</span>
           </button>
-      <button type="button" class="btn btn-default delete-btn" ng-click="deleteProject(project)">
+      <button type="button" class="btn btn-default delete-btn" >
         <span class="glyphicon glyphicon-remove">Supprimer</span>
       </button>
     </td>
   </tr>
 </table>
+
+<div class="container" *ngIf="match">
+<table class="table">
+<tr>
+  <th>Numero</th>
+  <th>titre</th>
+  <th>type</th>
+  <th>description</th>
+  <th></th>
+</tr>
+<tr *ngFor="let adv of matchadvert; let i = index">
+  <td>{{i + 1}}</td>
+  <td>{{advert.title}}</td>
+  <td>{{adv.type}}</td>
+  <td>{{adv.description}}</td>
+  <td>
+      <a class="btn btn-primary" [routerLink]="['/advert-detail', adv._id]"> Voir Annonce </a>
+      
+      
+    </td>
+  <td>
+      <button type="button" class="btn btn-default edit-btn">
+          <span class="glyphicon glyphicon-pencil">Modifier</span>
+        </button>
+    <button type="button" class="btn btn-default delete-btn" >
+      <span class="glyphicon glyphicon-remove">Supprimer</span>
+    </button>
+  </td>
+</tr>
+</table>
+</div>

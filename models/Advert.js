@@ -16,5 +16,5 @@ var AdvertSchema = new mongoose.Schema({
             country: String
         }
     });
-
+    AdvertSchema.index({'$**': 'text'});
     module.exports = mongoose.model('advert',AdvertSchema);

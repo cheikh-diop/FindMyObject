@@ -15,7 +15,7 @@
         <div class="col-sm-10">
           <select [(ngModel)]='advert.type' name="type" class="form-control" id="type" aria-placeholder="Choisir le type de votre annonce">
             <option *ngIf="auth.loggedIn()">Perdu</option>
-            <option *ngIf="!auth.loggedIn()">Trouvé</option>
+            <option *ngIf="!auth.loggedIn()">Trouve</option>
           </select>
         </div>
       </div>
@@ -97,7 +97,8 @@
       <!-- Button -->
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button class="btn btn-primary" id="btn-advert" type="submit" (click)='createAdvert()'>Envoyer </button>
+          <button class="btn btn-primary" *ngIf="!auth.loggedIn()" id="btn-advert" type="submit" (click)='createAdvert()'>Envoyer </button>
+          <button class="btn btn-primary" *ngIf="auth.loggedIn()" id="btn-advert" type="submit" (click)='userCreateAdvert()'>Envoyer </button>
           <button class="btn btn-default" type="reset">Annuler </button>
         </div>
       </div>

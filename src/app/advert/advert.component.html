@@ -1,5 +1,6 @@
 <div class="container">
-  <h2>Liste des annonces </h2>
+  <h2>Liste des annonces </h2> 
+  <a class="btn btn-primary" [routerLink]="['/searchAdvert']"> Chercher Annonce </a>
   <p>Cliquer sur l'image pour voir l'annonce </p>
   <div class="row">
     <div *ngFor="let advert of adverts" class="col-md-3">

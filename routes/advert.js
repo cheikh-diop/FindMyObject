@@ -6,15 +6,84 @@ var fs = require('fs');
 var decode64 = require('base-64').decode;
 
 /* GET ALL ADVERTS */
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
   Advert.find(function (err, products) {
     if (err) return next(err);
     res.json(products);
   });
 });
 
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+
+
+router.get('/searchField', function(req, res, next) {
+  console.log(req.query.model);
+  console.log(req.query.type);
+
+  const regexModel = new RegExp(escapeRegex(req.query.model), 'gi');
+  const regexType = new RegExp(escapeRegex(req.query.type), 'gi');
+  const regexMarc = new RegExp(escapeRegex(req.query.mark), 'gi');
+  const regexCity = new RegExp(escapeRegex(req.query.city), 'gi');
+  const regexCountry = new RegExp(escapeRegex(req.query.country), 'gi');
+
+// la j'ai fait rec c tous ce qu il y a nrml att
+  Advert.find({$or:[{ "model": regexModel},{ "type":regexType},{ "mark":regexMarc},{ "country":regexCountry}, { "city":regexCity}]}, function (err, results) {
+    if (err) {
+        console.log(err);
+    } else {
+        res.json(results);
+        console.log(results);
+        console.log("TEST");
+    }
+});
+});
+
+
+
+
+
+router.get('/search', function(req, res, next) {
+  
+ /* const regex = new RegExp(escapeRegex("model"), 'gi');
+  Advert.find({ "model": regex }, function (err, results) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log(results);
+        console.log("TEST");
+    }
+});*/
+
+//console.log("happy!!!!"+req.query.search);
+var keyword = req.query.search;
+
+var find = {'$text':{'$search':keyword}};
+
+Advert.find(find)
+.exec(function(err, docs) { 
+  
+  if (err) return next(err);
+ 
+  //console.log(JSON.stringify(docs));
+  res.json(docs);
+});
+
+//TEST**********
+/*Advert.find(find, function (err, results) {
+  if (err) {
+      console.log(err);
+  } else {
+    console.log(JSON.stringify(results));
+    res.json(results);
+   
+  }
+});*/
+});
+
 /* GET ADVERT  BY ID */
-router.get('/:id', function (req, res, next) {
+router.get('/:id', function(req, res, next) {
   Advert.findById(req.params.id, function (err, post) {
     if (err) return next(err);
     res.json(post);
@@ -22,47 +91,48 @@ router.get('/:id', function (req, res, next) {
 });
 
 /* SAVE ADVERT */
-router.post('/createAdvert', function (req, res, next) {
+router.post('/createAdvert', function(req, res, next) {
   Advert.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
+
+
 /* SAVE ADVERT SOME COLOMNS */
-router.post('/addAdvertLessUser', (req, res) => {
-  var a = new Advert();
-  console.log("hello");
-  var img = req.body.url;
-  var data = img.replace(/^data:image\/\w+;base64,/, "");
-  var buf = new Buffer(data, 'base64');
-  fs.writeFile('src/assets/' + req.body.image_url, buf);
-  a.title = req.body.title;
-  a.description = req.body.description;
-  a.type = req.body.type;
-  a.mark = req.body.mark;
-  a.model = req.body.model;
-  a.address.code_city = req.body.code_city;
-  a.address.city = req.body.city;
-  a.address.country = req.body.country;
-  a.date_time = req.body.date_time;
-  a.image_url = req.body.image_url;
-  a.save(function (err) {
+router.post('/addAdvertLessUser',(req,res)=>{
+var a =new Advert();
+var img = req.body.url;
+var data = img.replace(/^data:image\/\w+;base64,/, "");
+var buf = new Buffer(data, 'base64');
+fs.writeFile('src/assets/'+req.body.image_url, buf);
 
-    if (err) {
-      console.log("hello");
-      res.send(err);
-
-    }
-    res.send({ message: "add created" });
+  a.title=req.body.title;
+  a.description=req.body.description;
+  a.type=req.body.type;
+  a.mark=req.body.mark;
+  a.model=req.body.model;
+  a.address.code_city=req.body.code_city;
+  a.address.city=req.body.city;
+  a.address.country=req.body.country;
+  a.date_time=req.body.date_time;
+  a.image_url=req.body.image_url;
+  a.save(function(err){
+      if (err){
+          res.send(err);
+         
+      }
+      res.send({message:"add created"});
   })
 
 
 });
 
 
+
 /* UPDATE ADVERT */
-router.put('/:id', function (req, res, next) {
+router.put('/:id', function(req, res, next) {
   Advert.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
@@ -70,11 +140,26 @@ router.put('/:id', function (req, res, next) {
 });
 
 /* DELETE ADVERT */
-router.delete('/:id', function (req, res, next) {
+router.delete('/:id', function(req, res, next) {
   Advert.findByIdAndRemove(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
+/* MATCH ADVERT */
+router.post('/match', function(req, res, next) {
+// ca passe il ma donner ce que je veux c est un "et"
+  //console.log("contenue de body"+req.query.type);
+  
+  Advert.find({ $and: [ { type : "Trouve"}, { mark: req.body.mark }] }, function (err, doc){
+    if (err) return next(err);
+    
+    res.json(doc);
+    
+});
+    
+}); 
+
 module.exports = router;
+
