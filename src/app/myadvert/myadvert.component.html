@@ -30,9 +30,12 @@
     </td>
   </tr>
 </table>
-
-<div class="container" *ngIf="match">
-<table class="table">
+<div class="container" *ngIf="matchadvert?.length ==0 ">
+  <h2> Desole il n'y a pas d'annonce qui match </h2>  
+</div>
+<div class="container" *ngIf="matchadvert?.length > 0">
+<h1>Resultat match </h1>
+  <table class="table">
 <tr>
   <th>Numero</th>
   <th>titre</th>

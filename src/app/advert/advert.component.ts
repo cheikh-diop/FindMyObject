@@ -1,18 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
-
+import {Http, Headers, RequestOptions, Response} from '@angular/http'
+import {PaginationserviceService} from '../paginationservice.service'
+import * as _ from 'underscore'
 @Component({
   selector: 'app-advert',
   templateUrl: './advert.component.html',
   styleUrls: ['./advert.component.css']
 })
 export class AdvertComponent implements OnInit {
-  adverts : any
-  constructor(private http : HttpClient) { }
+  adverts : any[];
+  // pager object
+  pager : any={};
+  // paged items 
+  pagedItems : any[]
+  constructor(private http : Http,private pagerService:PaginationserviceService) { }
   ngOnInit() {
-    this.http.get('http://localhost:3000/advert').subscribe(data => {
+    // get data
+    this.http.get('http://localhost:3000/advert')
+    .map((response: Response) => response.json())
+    .subscribe(data => {
       this.adverts = data;
+
+      // initialize to page 1
+      this.setPage(1);
     });
   }
+
+  setPage(page: number) {
+    if (page < 1 || page > this.pager.totalPages) {
+        return;
+    }
+
+    // get pager object from service
+    this.pager = this.pagerService.getPager(this.adverts.length, page);
+
+    // get current page of items
+    this.pagedItems = this.adverts.slice(this.pager.startIndex, this.pager.endIndex + 1);
+}
+
 
 }
