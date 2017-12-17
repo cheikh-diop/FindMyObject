@@ -12,9 +12,17 @@
     <dd>{{ advert.model }}</dd>
     <dt>date et heure</dt>
     <dd>{{ advert.date_time }}</dd>
-    <h3> Adresse </h3>
+    <h3> Rue </h3>
+    
+    <dd>{{advert.address?.street}}</dd>
+
+    <h3> Ville </h3>
     
     <dd>{{advert.address?.city}}</dd>
+
+    <h3> Country </h3>
+    
+    <dd>{{advert.address?.country}}</dd>
 
 
 

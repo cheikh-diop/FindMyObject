@@ -79,10 +79,10 @@ router.post('/authenticate', (req, res, next) => {
 });
 /* UPDATE User (add avert ) */
 router.put('/addUserAdvert', function (req, res, next) {
+// la tu recupere le tableau user du coup on fait req.body.user.advert.....
+ console.log("TEST CITY"+req.body.user);
 
-  // Gestion  ajout annonce dans la table user et advert bloquant pour le moment du au probleme de synchonisation 
-
-  console.log(req.body);
+ // console.log(req.body);
 
   async.waterfall([
     //creation dans la table advert

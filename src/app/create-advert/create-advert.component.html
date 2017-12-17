@@ -1,12 +1,16 @@
 <div class="container">
-  <form class="form-horizontal" id="createAdvert">
+  <form class="form-horizontal">
     <legend>
       Créer une annonce
     </legend>
-    <div class="form-group">
-      <label class="col-sm-2 control-label" for="textinput">Titre de l'annonce</label>
-      <div class="col-sm-4">
-        <input [(ngModel)]='advert.title' name="title" class="form-control" id="title" type="text" value="" placeholder="Ajouter un titre à votre annonce">
+    <div>
+      <div [formGroup]="myGroup1" class="form-group">
+        <label class="col-sm-2 control-label" for="textinput">Titre de l'annonce</label>
+        <div class="col-sm-4">
+          <input formControlName="titleControl" [(ngModel)]='advert.title' name="title" class="form-control" id="title" type="text"
+            placeholder="Ajouter un titre à votre annonce">
+          <div class="alert" *ngIf="titleControl.invalid"> Ce champs est obligatoire. </div>
+        </div>
       </div>
     </div>
     <div>
@@ -31,15 +35,25 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <label class="col-sm-2 control-label" for="textinput">Marque</label>
-      <div class="col-sm-4">
-        <input [(ngModel)]='advert.mark' name="mark" class="form-control" id="mark" type="text" value="" placeholder="Ajouter la marque">
+    <div>
+      <div [formGroup]="myGroup2" class="form-group">
+        <label class="col-sm-2 control-label" for="textinput">Marque</label>
+        <div class="col-sm-4">
+          <input formControlName="markControl" [(ngModel)]='advert.mark' name="mark" class="form-control" id="mark" type="text" value=""
+            placeholder="Ajouter la marque">
+        </div>
+        <div class="alert" *ngIf="markControl.invalid"> Ce champs est obligatoire. </div>
       </div>
+    </div>
 
-      <label class="col-sm-2 control-label">Model</label>
-      <div class="col-sm-4">
-        <input [(ngModel)]='advert.model' name="model" class="form-control" id="model" type="text" placeholder="Ajouter le model">
+    <div>
+      <div [formGroup]="myGroup3" class="form-group">
+        <label class="col-sm-2 control-label">Model</label>
+        <div class="col-sm-4">
+          <input formControlName="modelControl" [(ngModel)]='advert.model' name="model" class="form-control" id="model" type="text"
+            placeholder="Ajouter le model">
+        </div>
+        <div class="alert" *ngIf="modelControl.invalid"> Ce champs est obligatoire. </div>
       </div>
     </div>
 
@@ -57,44 +71,59 @@
     </div>
 
     <!-- Text input-->
-    <div class="form-group">
+    <!--<div class="form-group">
       <label>Ou est ce que vous avez perdu votre objet </label>
       <label>{{advert.mark}}</label>
       <br>
       <label class="col-sm-2 control-label" for="textinput">Adresse </label>
       <div class="col-sm-10">
-        <input [(ngModel)]='advert.street' name="street" id="street" type="text" placeholder="Adresse numéro rue, résidence" class="form-control">
+        <input [(ngModel)]='advert.address.street' name="street" id="street" type="text" placeholder="Adresse numéro rue, résidence" class="form-control">
       </div>
     </div>
-
-    <div class="form-group">
+  -->
+    <!--<div class="form-group">
       <label class="col-sm-2 control-label" for="textinput">Ville</label>
       <div class="col-sm-4">
-        <input [(ngModel)]='advert.city' name="city" id="city" type="text" placeholder="State" class="form-control">
+        <input [(ngModel)]='advert.address.city' name="city" id="city" type="text" placeholder="State" class="form-control">
       </div>
 
       <label class="col-sm-2 control-label" for="textinput">Code postal</label>
       <div class="col-sm-4">
-        <input [(ngModel)]='advert.code_city' name="code_city" id="code_city" type="number" placeholder="Post Code" class="form-control">
+        <input [(ngModel)]='advert.address.code_city' name="code_city" id="code_city" type="number" placeholder="Post Code" class="form-control">
       </div>
     </div>
-
+  -->
     <!-- Text input-->
-    <div class="form-group">
+    <!--<div class="form-group">
       <label class="col-sm-2 control-label" for="textinput">Pays</label>
       <div class="col-sm-10">
-        <input [(ngModel)]='advert.country' name="country" id="country" type="text" placeholder="Country" class="form-control">
+        <input [(ngModel)]='advert.address.country' name="country" id="country" type="text" placeholder="Country" class="form-control">
       </div>
     </div>
-
+    </div>
+  -->
     <div class="form-group">
       <label class="col-sm-2 control-label" for="textinput">La date exacte est </label>
       <div class="col-sm-4">
         <input [(ngModel)]='advert.date_time' name="date_time" class="form-control" id="date_time" type="date" value="" placeholder="">
       </div>
     </div>
-    <div>
+   
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="textinput">Adresse de l'objet trouvé </label>
+            <div class="col-sm-5">
+            <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
+            #search [formControl]="searchControl"> {{advert.address.country}}
+          </div>
+        </div>
+        <div class="form-group">
+        <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+          <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+        </agm-map>
+        </div>
+
       <!-- Button -->
+      <div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <button class="btn btn-primary" *ngIf="!auth.loggedIn()" id="btn-advert" type="submit" (click)='createAdvert()'>Envoyer </button>
@@ -103,6 +132,7 @@
         </div>
       </div>
     </div>
+
 
   </form>
 </div>

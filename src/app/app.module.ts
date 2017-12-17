@@ -19,6 +19,7 @@ import { HomeComponent } from './home/home.component';
 import { MyadvertComponent } from './myadvert/myadvert.component';
 import { SearchAdvertComponent } from './search-advert/search-advert.component';
 import { ReactiveFormsModule } from "@angular/forms";
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
 
 const appRoutes: Routes = [
@@ -94,6 +95,11 @@ const appRoutes: Routes = [
     SearchAdvertComponent,
     ],
   imports: [
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyDEo8uS3WIFZ-62Md3Dsm6-4DB8OHc0Jkc",
+      libraries: ["places"],
+      language: 'fr',
+    }),
     ReactiveFormsModule,
     BrowserModule,
     FormsModule, 
