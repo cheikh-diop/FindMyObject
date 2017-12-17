@@ -114,8 +114,10 @@ fs.writeFile('src/assets/'+req.body.image_url, buf);
   a.mark=req.body.mark;
   a.model=req.body.model;
   a.address.code_city=req.body.code_city;
+  console.log("JE SUIS CITY "+req.body.city+" JE SUIS COUNTRY"+req.body.country);
   a.address.city=req.body.city;
   a.address.country=req.body.country;
+  a.address.street=req.body.street;
   a.date_time=req.body.date_time;
   a.image_url=req.body.image_url;
   a.save(function(err){

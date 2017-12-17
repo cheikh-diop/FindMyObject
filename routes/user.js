@@ -79,7 +79,7 @@ router.post('/authenticate', (req, res, next) => {
 /* UPDATE User (add avert ) */
 router.put('/addUserAdvert', function (req, res, next) {
 
- // console.log(req.body._id);
+ console.log("TEST CITY"+req.body.advert.city);
 
   
 
