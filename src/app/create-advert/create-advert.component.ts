@@ -20,7 +20,23 @@ import { } from 'googlemaps';
 
 export class CreateAdvertComponent implements OnInit {
 
-  advert = {};
+  advert = {
+    title : "",
+    type :"",
+    description:"",
+    mark:"",
+    model:"",
+    image_url:"",
+    date_time:"",
+    address: {
+      street: "",
+      city: "",
+      code_city: "",
+      country: ""
+  }
+
+  }
+
   country;
   city;
   street;
@@ -119,24 +135,22 @@ export class CreateAdvertComponent implements OnInit {
 
       //console.log("utilisateur creer annonce")
 
-      Object.assign(this.advert, {
-        "country": this.country,
-        "city": this.city,
-        "street": this.street
-      });
-      this.user.advert = this.advert;
-      alert("JE SUIS LE TAB USER"+JSON.stringify(this.user))
-      alert(JSON.stringify(this.user.advert));
-      //console.log("annonce " + JSON.stringify(this.user));
-      this.http.put('http://localhost:3000/user/addUserAdvert', this.user)
-        .subscribe(res => {
-          alert("Votre annonce a été créé avec succés");
-          console.log("RESULTAT" + res);
-        }, (err) => {
+    //console.log("utilisateur creer annonce")
 
-          console.log(err);
-        }
-        )
+
+    this.user.advert = this.advert;
+    //this.user.advert.address=this.advert.address;
+
+    console.log("annonce " + JSON.stringify(this.user));
+    this.http.put('http://localhost:3000/user/addUserAdvert', this.user)
+      .subscribe(res => {
+        alert("Votre annonce a été créé avec succés");
+        console.log("RESULTAT" + res);
+      }, (err) => {
+
+        console.log(err);
+      }
+      )
     }
 
     ngOnInit() {
@@ -188,14 +202,15 @@ export class CreateAdvertComponent implements OnInit {
             alert(this.searchElementRef.nativeElement.value);
             var arrayOfStrings = this.searchElementRef.nativeElement.value.split(',');
             if (arrayOfStrings.length == 3) {
-              this.country = arrayOfStrings[2];
-              this.city = arrayOfStrings[1];
-              this.street = arrayOfStrings[0];
+              this.advert.address.country = arrayOfStrings[2];
+              this.advert.address.city = arrayOfStrings[1];
+              this.advert.address.street = arrayOfStrings[0];
+              
             }
             else {
-              this.country = arrayOfStrings[3];
-              this.city = arrayOfStrings[2];
-              this.street = arrayOfStrings[0] + " " + arrayOfStrings[1];
+              this.advert.address.country = arrayOfStrings[3];
+              this.advert.address.city = arrayOfStrings[2];
+              this.advert.address.street = arrayOfStrings[0] + " " + arrayOfStrings[1];
             }
           });
         });
