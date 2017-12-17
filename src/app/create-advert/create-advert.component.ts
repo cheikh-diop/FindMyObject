@@ -5,7 +5,7 @@ import { LoginComponent } from '../login/login.component'
 import { Http, RequestOptions, Headers, URLSearchParams, ResponseContentType, Response } from '@angular/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import {  ElementRef, NgModule, NgZone,ViewChild } from '@angular/core';
+import { ElementRef, NgModule, NgZone, ViewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
@@ -27,7 +27,7 @@ export class CreateAdvertComponent implements OnInit {
   url = '';
   image_path = '';
   user = {
-    id:"",
+    id: "",
     name: "",
     last_name: "",
     email: "",
@@ -58,8 +58,8 @@ export class CreateAdvertComponent implements OnInit {
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
-  constructor(private router: Router, private http: HttpClient, private auth: LoginComponent,private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone) { 
+  constructor(private router: Router, private http: HttpClient, private auth: LoginComponent, private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone) {
 
     this.titleControl = new FormControl('', Validators.required);
     this.markControl = new FormControl('', Validators.required);
@@ -80,124 +80,128 @@ export class CreateAdvertComponent implements OnInit {
     console.log("creer annonce");
     Object.assign(this.advert, {
       "country": this.country,
-      "city" : this.city,
-      "street" : this.street
+      "city": this.city,
+      "street": this.street
     });
-      this.http.post('http://localhost:3000/advert/addAdvertLessUser', this.advert)
-        .subscribe(res => {
-          alert("Votre annonce a été créé avec succés");
-          console.log("RESULTAT" + res);
-        }, (err) => {
-          console.log(err);
-        }
-        );
-  }
-
-  readUrl(event: any) {
-
-    if (event.target.files && event.target.files[0]) {
-
-      var reader = new FileReader();
-
-      var tmppath = URL.createObjectURL(event.target.files[0]);
-      Object.assign(this.advert, {
-        "image_url": event.target.files[0].name
-      });
-      reader.onload = (event: any) => {
-        this.url = event.target.result;
-        Object.assign(this.advert, {
-          "url": this.url
-        });
-
-      }
-      reader.readAsDataURL(event.target.files[0]);
-    }
-  }
- 
-  userCreateAdvert() {
-
-   
-    console.log("utilisateur creer annonce")
-    
-    Object.assign(this.advert, {
-      "country": this.country,
-      "city" : this.city,
-      "street" : this.street
-    });
-
-
-    this.auth.getProfile().subscribe(profile => {
-      this.user = profile.user;
-      alert("utilisateur "+this.user)
-
-    },
-      err => {
-        console.log(err);
-        return false;
-      }
-    )
-    this.user.advert = this.advert;
-    
-    console.log("test"+JSON.stringify(this.user.advert));
-    this.http.put('http://localhost:3000/user/addUserAdvert', this.user)
+    this.http.post('http://localhost:3000/advert/addAdvertLessUser', this.advert)
       .subscribe(res => {
         alert("Votre annonce a été créé avec succés");
         console.log("RESULTAT" + res);
       }, (err) => {
-        
         console.log(err);
       }
-      )
-  }
+      );
+    }
 
-  ngOnInit() {
-    //set google maps defaults
-    this.zoom = 9;
-    this.latitude = 39.8282;
-    this.longitude = -98.5795;
 
-    //create search FormControl
-    this.searchControl = new FormControl();
+    readUrl(event: any) {
 
-    //set current position
-    this.setCurrentPosition();
-    var options = {
-      types: ['geocode'],
-      componentRestrictions: {country: 'fr'}
-    };
-    //load Places Autocomplete
-    this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, options);
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          //get the place result
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-           
-          //verify result
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-         
-          //set latitude, longitude and zoom
-          this.latitude = place.geometry.location.lat();
-          this.longitude = place.geometry.location.lng();
-          this.zoom = 20;
-          alert( this.searchElementRef.nativeElement.value);
-          var arrayOfStrings = this.searchElementRef.nativeElement.value.split(',');
-          if(arrayOfStrings.length == 3 ){
-          this.country = arrayOfStrings[2];
-          this.city = arrayOfStrings[1];
-          this.street = arrayOfStrings[0];} 
-          else {
-          this.country = arrayOfStrings[3];
-          this.city = arrayOfStrings[2];
-          this.street = arrayOfStrings[0]+" "+arrayOfStrings[1];
-          } 
-        });    
+      if (event.target.files && event.target.files[0]) {
+
+        var reader = new FileReader();
+
+        var tmppath = URL.createObjectURL(event.target.files[0]);
+        Object.assign(this.advert, {
+          "image_url": event.target.files[0].name
+        });
+        reader.onload = (event: any) => {
+          this.url = event.target.result;
+          Object.assign(this.advert, {
+            "url": this.url
+          });
+
+        }
+        reader.readAsDataURL(event.target.files[0]);
+      }
+    }
+
+    userCreateAdvert() {
+
+      //console.log("utilisateur creer annonce")
+
+      Object.assign(this.advert, {
+        "country": this.country,
+        "city": this.city,
+        "street": this.street
       });
-    });
-  
-  }
+      this.user.advert = this.advert;
+      console.log("JE SUIS LE TAB USER"+JSON.stringify(this.user))
+     console.log("JE SUIS ADVERT "+JSON.stringify(this.advert));
+      //console.log("annonce " + JSON.stringify(this.user));
+      this.http.put('http://localhost:3000/user/addUserAdvert', this.user)
+        .subscribe(res => {
+          alert("Votre annonce a été créé avec succés");
+          console.log("RESULTAT" + res);
+        }, (err) => {
+
+          console.log(err);
+        }
+        )
+    }
+
+    ngOnInit() {
+      // Recuperation de l'utilisateur
+      if (localStorage.getItem('user')) {
+        this.auth.getProfile().subscribe(profile => {
+          this.user = profile.user;
+          //salert("utilisateur " + this.user)
+
+        },
+          err => {
+            console.log(err);
+            return false;
+          }
+        )
+      }
+
+      //set google maps defaults
+      this.zoom = 9;
+      this.latitude = 39.8282;
+      this.longitude = -98.5795;
+
+      //create search FormControl
+      this.searchControl = new FormControl();
+
+      //set current position
+      this.setCurrentPosition();
+      var options = {
+        types: ['geocode'],
+        componentRestrictions: { country: 'fr' }
+      };
+      //load Places Autocomplete
+      this.mapsAPILoader.load().then(() => {
+        let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, options);
+        autocomplete.addListener("place_changed", () => {
+          this.ngZone.run(() => {
+            //get the place result
+            let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+            //verify result
+            if (place.geometry === undefined || place.geometry === null) {
+              return;
+            }
+
+            //set latitude, longitude and zoom
+            this.latitude = place.geometry.location.lat();
+            this.longitude = place.geometry.location.lng();
+            this.zoom = 20;
+            alert(this.searchElementRef.nativeElement.value);
+            var arrayOfStrings = this.searchElementRef.nativeElement.value.split(',');
+            if (arrayOfStrings.length == 3) {
+              this.country = arrayOfStrings[2];
+              this.city = arrayOfStrings[1];
+              this.street = arrayOfStrings[0];
+            }
+            else {
+              this.country = arrayOfStrings[3];
+              this.city = arrayOfStrings[2];
+              this.street = arrayOfStrings[0] + " " + arrayOfStrings[1];
+            }
+          });
+        });
+      });
+
+    }
 
   private setCurrentPosition() {
     if ("geolocation" in navigator) {
@@ -205,7 +209,7 @@ export class CreateAdvertComponent implements OnInit {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.zoom = 9;
-       
+
       });
     }
   }

@@ -1,5 +1,4 @@
-
-
+var async = require("async");
 var express = require('express');
 var router = express.Router();
 const passport = require('passport');
@@ -7,6 +6,8 @@ var mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const User = require('../models/Users.js');
 var Advert = require('../models/Advert.js');
+var fs = require('fs');
+var decode64 = require('base-64').decode;
 
 /* GET ALL User */
 router.get('/', function (req, res, next) {
@@ -78,32 +79,58 @@ router.post('/authenticate', (req, res, next) => {
 });
 /* UPDATE User (add avert ) */
 router.put('/addUserAdvert', function (req, res, next) {
+// la tu recupere le tableau user du coup on fait req.body.user.advert.....
+ console.log("TEST CITY"+req.body.user);
 
- console.log("TEST CITY"+req.body.advert.city);
+ // console.log(req.body);
 
-  
+  async.waterfall([
+    //creation dans la table advert
+    function (callback) {
+      var img = req.body.advert.url;
+      var data = img.replace(/^data:image\/\w+;base64,/, "");
+      var buf = new Buffer(data, 'base64');
+      fs.writeFile('src/assets/' + req.body.advert.image_url, buf);
 
-  Advert.create(req.body.advert, function (err, post) {
-    if (err) return next(err);
+      Advert.create(req.body.advert, callback)
+    },  // creation dans la table user
+    function (advert, callback) {
+      User.addUserAdvert(req.body._id, advert, callback)
+    }
+  ], function (error, success) {
+    if (error) res.json({ success: false, msg: 'probleme ajout' });
 
-    User.addUserAdvert(req.body._id, post, function (err, post) {
-      if (err) {
-        res.json({ success: false, msg: 'Ajout reussi' });
-      } else {
-        res.json({ success: true, msg: 'probleme ajout' });
-      }
-    });
-   // console.log("variable " + post);
+    return res.json(success);
   });
 
+  //res.json({ success: true, msg: 'ajout reussi' });
 });
 
-/* DELETE User */
-router.delete('/:id', function (req, res, next) {
-  Advert.findByIdAndRemove(req.params.id, req.body, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
+/* DELETE User adver */
+router.put('/deleteUserAdvert', function (req, res, next) {
+  console.log("clique sur delete advert");
+  console.log("Id de l'utilisateur " + req.body._id + " Id des annonces " + req.body.idadvert);
+
+  async.waterfall([
+    //creation dans la table advert
+    
+    function (callback) {
+      Advert.where('_id').equals(req.body.idadvert).remove(callback)
+
+    },
+    function (callback) {
+
+      User.update({_id:req.body._id}, {$pull: {advert: {_id : req.body.idadvert}}},callback)
+        
+    }
+  ], function (error, success) {
+    if (error) res.json({ success: false, msg: 'probleme ajout' });
+
+    return res.json(success);
   });
+
+
+  //res.json({success:true});
 });
 
 // Profile
@@ -115,12 +142,12 @@ router.get('/profile', passport.authenticate('jwt', { session: false }), (req, r
 
 router.get('/getUserAdvert/:id', (req, res, next) => {
 
-  console.log("contenu " + req.params.id);
+  // console.log("contenu " + req.params.id);
 
   User.getUserAdvert(req.params.id, function (err, post) {
     if (err) return next(err);
     res.json(post)
-  //  console.log(post)
+    /// console.log(post)
   });
 
 
