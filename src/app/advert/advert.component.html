@@ -1,3 +1,23 @@
+<<<<<<< HEAD
+<body>
+
+  <div class="container">
+    <h2>Toutes les annonces</h2>
+    <a class="btn btn-primary" [routerLink]="['/searchAdvert']"> Chercher Annonce </a>
+
+    <p>Cliquer sur l'image pour voir l'annonce</p>
+
+    <!-- Left-aligned media object -->
+    <div class="media" *ngFor="let advert of adverts">
+      <div class="media-left">
+        <img src="../../assets/{{advert.image_url}}" alt="{{advert.image_url}}" class="media-object" style="width:90px">
+      </div>
+      <div class="media-body">
+        <h6 class="media-heading">date : {{advert.date_time}}</h6>
+        <h6 class="media-heading">type : {{advert.type}}</h6>
+        <h4 class="media-heading">titre :{{advert.title}}</h4>
+        <p>{{advert.description}}</p>
+=======
 <div class="container">
   <h2>Liste des annonces </h2> 
   <a class="btn btn-primary" [routerLink]="['/searchAdvert']"> Chercher Annonce </a>
@@ -17,8 +37,30 @@
                   overflow: hidden;
                   text-overflow: ellipsis;">{{ advert.description }}</p>
         </div>
+>>>>>>> 356d94fd184cf925aaac0b2ea253f4856e72fed1
         <a class="btn btn-primary" [routerLink]="['/advert-detail', advert._id]"> Voir Annonce </a>
+
       </div>
+      <hr>
     </div>
+    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+        <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(1)">Page 1</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(pager.currentPage - 1)">Precedent</a>
+        </li>
+        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+            <a (click)="setPage(page)">{{page}}</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.currentPage + 1)">Suivant</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.totalPages)">Dernier</a>
+        </li>
+    </ul>
+
   </div>
-</div>
+
+</body>
