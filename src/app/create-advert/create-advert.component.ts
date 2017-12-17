@@ -11,7 +11,22 @@ import { Http, RequestOptions, Headers, URLSearchParams, ResponseContentType, Re
 
 export class CreateAdvertComponent implements OnInit {
 
-  advert = {};
+  advert = {
+    title : "",
+    type :"",
+    description:"",
+    mark:"",
+    model:"",
+    image_url:"",
+    date_time:"",
+    address: {
+      street: "",
+      city: "",
+      code_city: "",
+      country: ""
+  }
+
+  }
   url = '';
   image_path = '';
   user = {
@@ -86,8 +101,9 @@ export class CreateAdvertComponent implements OnInit {
 
 
     this.user.advert = this.advert;
+    //this.user.advert.address=this.advert.address;
 
-    //console.log("annonce " + JSON.stringify(this.user));
+    console.log("annonce " + JSON.stringify(this.user));
     this.http.put('http://localhost:3000/user/addUserAdvert', this.user)
       .subscribe(res => {
         alert("Votre annonce a été créé avec succés");
