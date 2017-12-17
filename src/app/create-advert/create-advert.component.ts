@@ -33,15 +33,11 @@ export class CreateAdvertComponent implements OnInit {
       city: "",
       code_city: "",
       country: "",
-      latitude: 1,
-      longitude: 1,
+      longitude:"",
+      latitude:""
   }
 
   }
-
-  country;
-  city;
-  street;
   url = '';
   image_path = '';
   user = {
@@ -56,6 +52,7 @@ export class CreateAdvertComponent implements OnInit {
       city_code: "",
       street: "",
       country: "",
+      
     }
   }
   place;
@@ -96,13 +93,7 @@ export class CreateAdvertComponent implements OnInit {
   createAdvert() {
     // Si il n y a pas de connexion cela veut dire c'est un ajout d'objet trouve
     console.log("creer annonce");
-    Object.assign(this.advert, {
-      "country": this.country,
-      "city": this.city,
-      "street": this.street,
-      "latitude": this.latitude,
-      "longitude": this.longitude 
-    });
+    console.log("pub" +JSON.stringify(this.advert))
     this.http.post('http://localhost:3000/advert/addAdvertLessUser', this.advert)
       .subscribe(res => {
         alert("Votre annonce a été créé avec succés");
@@ -140,13 +131,7 @@ export class CreateAdvertComponent implements OnInit {
       //console.log("utilisateur creer annonce")
 
     //console.log("utilisateur creer annonce")
-       Object.assign(this.advert, {
-      "country": this.country,
-      "city": this.city,
-      "street": this.street,
-      "latitude": this.latitude,
-      "longitude": this.longitude 
-    });
+  
 
     this.user.advert = this.advert;
     //this.user.advert.address=this.advert.address;
@@ -206,12 +191,11 @@ export class CreateAdvertComponent implements OnInit {
             }
 
             //set latitude, longitude and zoom
-            this.latitude = place.geometry.location.lat();
-            this.longitude = place.geometry.location.lng();
-            this.advert.address.latitude =  this.latitude ;
-            this.advert.address.longitude =  this.longitude;
+            
+            this.advert.address.latitude =  place.geometry.location.lat().toString();
+            this.advert.address.longitude =  place.geometry.location.lng().toString();
             this.zoom = 20;
-            alert(this.searchElementRef.nativeElement.value);
+           // alert(this.searchElementRef.nativeElement.value);
             var arrayOfStrings = this.searchElementRef.nativeElement.value.split(',');
             if (arrayOfStrings.length == 3) {
               this.advert.address.country = arrayOfStrings[2];
