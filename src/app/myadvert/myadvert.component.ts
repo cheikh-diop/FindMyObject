@@ -17,21 +17,14 @@ export class MyadvertComponent implements OnInit {
   }
   fixedAdvert: any;
   advert1 = {
+
+    _id:"",
+    userid:"",
     title: "",
-    type: "",
     description: "",
     mark: "",
     model: "",
-    image_url: "",
-    date_time: "",
-    address: {
-      street: "",
-      city: "",
-      code_city: "",
-      country: "",
-      longitude: "",
-      latitude: ""
-    }
+    
 
   }
   matchadvert: any;
@@ -58,6 +51,21 @@ export class MyadvertComponent implements OnInit {
   fixUpdateAdvert(id) {
 
     this.fixedAdvert = id
+  }
+
+  updateAdvert(){
+    this.advert1.userid=this.user._id;
+    this.advert1._id=this.fixedAdvert;
+    
+    this.http.put('http://localhost:3000/user/updateUserAdvert/', this.advert1)
+    .subscribe(res => {
+      
+      console.log(res)
+      this.router.navigate(['/myadvert'])
+    }, (err) => {
+      console.log(err);
+    }
+    );
   }
 
   deleteAdvert(id) {

@@ -131,6 +131,31 @@ router.put('/deleteUserAdvert', function (req, res, next) {
 
 });
 
+/* Update user advert */
+router.put('/updateUserAdvert', function (req, res, next) {
+  console.log("clique sur delete advert");
+  console.log(" Advert " + JSON.stringify(req.body));
+
+  async.waterfall([
+    //creation dans la table advert
+    
+    function (callback) {
+      Advert.where('_id').equals(req.body.idadvert).remove(callback)
+
+    },
+    function (callback) {
+
+      User.update({_id:req.body._id}, {$pull: {advert: {_id : req.body.idadvert}}},callback)
+        
+    }
+  ], function (error, success) {
+    if (error) res.json({ success: false, msg: 'probleme ajout' });
+
+    return res.json(success);
+  });
+
+
+});
 // Profile
 router.get('/profile', passport.authenticate('jwt', { session: false }), (req, res, next) => {
 
