@@ -10,6 +10,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { AgmMap } from '@agm/core';
 import { } from 'googlemaps';
+import { AbstractControl, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-create-advert',
@@ -64,6 +65,9 @@ export class CreateAdvertComponent implements OnInit {
   myGroup3: FormGroup;
   modelControl: FormControl;
 
+  //myGroup4: FormGroup;
+  //selectControl: FormControl;
+
   public latitude: number;
   public longitude: number;
   public searchControl: FormControl;
@@ -78,6 +82,8 @@ export class CreateAdvertComponent implements OnInit {
     this.titleControl = new FormControl('', Validators.required);
     this.markControl = new FormControl('', Validators.required);
     this.modelControl = new FormControl('', Validators.required);
+   // this.selectControl = new FormControl('', Validators.required);
+
     this.myGroup1 = new FormGroup({
       titleControl: this.titleControl
     });
@@ -87,6 +93,9 @@ export class CreateAdvertComponent implements OnInit {
     this.myGroup3 = new FormGroup({
       modelControl: this.modelControl
     });
+   /* this.myGroup4 = new FormGroup({
+      selectControl: this.selectControl
+    });*/
   }
 
   createAdvert() {
@@ -124,7 +133,7 @@ export class CreateAdvertComponent implements OnInit {
 
         }
         reader.readAsDataURL(event.target.files[0]);
-      }
+      } 
     }
 
     userCreateAdvert() {

@@ -157,18 +157,20 @@ router.put('/updateUserAdvert', function (req, res, next) {
 
       User.update({
         _id : new mongoose.mongo.ObjectID(req.body.userid),
-        advert._id : new mongoose.mongo.ObjectID(req.body._id)
+        "advert._id" : new mongoose.mongo.ObjectID(req.body._id)
       },
         {
           $set:
             {
 
-              "advert.$.title" : "cheikh",
-              
-
+              "advert.$.title" : req.body.title,
+              "advert.$.mark" : req.body.mark,
+              "advert.$.model" : req.body.model,
+              "advert.$.description" : req.body.description
+            
             }
 
-        }, callback)
+        }, callback);
 
     }
   ], function (error, success) {
