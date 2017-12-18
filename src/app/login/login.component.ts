@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
 
     if (this.validateRegister(this.user1)) {
 
-      this.http.post('http://localhost:3000/user/authenticate', this.user1)
+      this.http.post('/user/authenticate', this.user1)
         .map(res => res.json())
         .subscribe(data => {
           if (data.success) {
@@ -91,7 +91,7 @@ export class LoginComponent implements OnInit {
 
   createUser() {
 
-    this.http.post('http://localhost:3000/user/register', this.user)
+    this.http.post('/user/register', this.user)
       .map(res => res.json())
       .subscribe(data => {
 
