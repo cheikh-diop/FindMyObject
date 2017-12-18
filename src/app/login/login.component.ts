@@ -5,7 +5,7 @@ import { Http, Headers } from '@angular/http';
 import { Subscriber } from 'rxjs/Subscriber';
 import { FlashMessagesService } from 'ngx-flash-messages';
 import {tokenNotExpired} from 'angular2-jwt';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-login',
@@ -143,7 +143,7 @@ export class LoginComponent implements OnInit {
     //console.log("la valeur du token "+this.authToken);
     headers.append('Authorization', this.authToken)
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/user/profile', { headers: headers })
+    return this.http.get('/user/profile', { headers: headers })
       .map(res => res.json());
       
   }

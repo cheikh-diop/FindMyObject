@@ -34,7 +34,7 @@
     "ngx-flash-messages": "^1.0.4",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.1",
-    "rxjs": "^5.5.2",
+    "rxjs": "^5.5.5",
     "serve-favicon": "^2.4.5",
     "underscore": "^1.8.3",
     "zone.js": "^0.8.14"
