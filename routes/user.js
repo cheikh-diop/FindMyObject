@@ -88,10 +88,10 @@ router.put('/addUserAdvert', function (req, res, next) {
       var data = img.replace(/^data:image\/\w+;base64,/, "");
       var buf = new Buffer(data, 'base64');
       fs.writeFile('src/assets/' + req.body.advert.image_url, buf);
-      let ad=new Advert();
+      let ad = new Advert();
       ad = req.body.advert;
-      ad.current_date=utility.getDateTime();
-      
+      ad.current_date = utility.getDateTime();
+
       Advert.create(ad, callback)
     },  // creation dans la table user
     function (advert, callback) {
@@ -112,15 +112,15 @@ router.put('/deleteUserAdvert', function (req, res, next) {
 
   async.waterfall([
     //creation dans la table advert
-    
+
     function (callback) {
       Advert.where('_id').equals(req.body.idadvert).remove(callback)
 
     },
-    function (callback) {
+    function (res, callback) {
 
-      User.update({_id:req.body._id}, {$pull: {advert: {_id : req.body.idadvert}}},callback)
-        
+      User.update({ _id: req.body._id }, { $pull: { advert: { _id: new mongoose.mongo.ObjectID(req.body.idadvert) } } }, callback)
+
     }
   ], function (error, success) {
     if (error) res.json({ success: false, msg: 'probleme ajout' });
@@ -138,19 +138,43 @@ router.put('/updateUserAdvert', function (req, res, next) {
 
   async.waterfall([
     //creation dans la table advert
-    
+
     function (callback) {
-      Advert.where('_id').equals(req.body.idadvert).remove(callback)
+      Advert.update({ _id: req.body._id }, {
+        $set:
+          {
+            title: req.body.title,
+            mark: req.body.mark,
+            model: req.body.model,
+            description: req.body.description
+
+
+          }
+      }, callback)
 
     },
-    function (callback) {
+    function (res, callback) {
 
-      User.update({_id:req.body._id}, {$pull: {advert: {_id : req.body.idadvert}}},callback)
-        
+      User.update({
+        _id : new mongoose.mongo.ObjectID(req.body.userid),
+        advert._id : new mongoose.mongo.ObjectID(req.body._id)
+      },
+        {
+          $set:
+            {
+
+              "advert.$.title" : "cheikh",
+              
+
+            }
+
+        }, callback)
+
     }
   ], function (error, success) {
     if (error) res.json({ success: false, msg: 'probleme ajout' });
 
+    
     return res.json(success);
   });
 

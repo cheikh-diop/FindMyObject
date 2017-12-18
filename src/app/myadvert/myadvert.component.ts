@@ -61,8 +61,8 @@ export class MyadvertComponent implements OnInit {
     this.http.put('http://localhost:3000/user/updateUserAdvert/', this.advert1)
     .subscribe(res => {
       
-      console.log(res)
-      this.router.navigate(['/myadvert'])
+      this.ngOnInit() ;
+      
     }, (err) => {
       console.log(err);
     }
@@ -75,7 +75,7 @@ export class MyadvertComponent implements OnInit {
      this.http.put('http://localhost:3000/user/deleteUserAdvert/',this.user)
        .subscribe(res => {
        // console.log(res);
-      this. ngOnInit() ;
+      this.ngOnInit() ;
        }, (err) => {
          console.log(err);
        }
