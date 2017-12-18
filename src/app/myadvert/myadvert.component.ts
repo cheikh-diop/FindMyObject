@@ -29,6 +29,7 @@ export class MyadvertComponent implements OnInit {
   }
   matchadvert: any;
   match = false;
+
   constructor(private router: Router, private http: Http, private auth: LoginComponent) { }
 
   ngOnInit() {
@@ -70,17 +71,19 @@ export class MyadvertComponent implements OnInit {
 
   deleteAdvert(id) {
     alert("suppression");
-    this.user.idadvert = id;
-    this.http.put('http://localhost:3000/user/deleteUserAdvert/', this.user)
-      .subscribe(res => {
-        alert("suppression faite");
-        console.log(res)
-      }, (err) => {
-        console.log(err);
-      }
-      );
-    // this.router.navigate(['/myadvert']);
-  }
+     this.user.idadvert=id;
+     this.http.put('http://localhost:3000/user/deleteUserAdvert/',this.user)
+       .subscribe(res => {
+       // console.log(res);
+      this. ngOnInit() ;
+       }, (err) => {
+         console.log(err);
+       }
+     
+       );
+     //  this.router.navigate(['/myadvert']);
+      // this.router.navigate(['/myadvert']);
+   }
   matchAdvert(ad) {
     // une autre annonce regarde 
 
@@ -91,7 +94,6 @@ export class MyadvertComponent implements OnInit {
         console.log("taille " + data.length);
         this.matchadvert = data;
       });
-
   }
 
 }
