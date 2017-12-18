@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit {
       .subscribe(data => {
 
         this.flashMessage.show("Vous pouvez vous connectez maintenant", {
-          classes: ['alert', 'alert-danger'], // You can pass as many classes as you need
+          classes: ['alert', 'alert-info'], // You can pass as many classes as you need
           timeout: 5000, // Default is 3000
         });
 

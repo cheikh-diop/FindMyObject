@@ -8,6 +8,7 @@ const User = require('../models/Users.js');
 var Advert = require('../models/Advert.js');
 var fs = require('fs');
 var decode64 = require('base-64').decode;
+var utility = require('../config/utility.js');
 
 /* GET ALL User */
 router.get('/', function (req, res, next) {
@@ -52,7 +53,7 @@ router.post('/authenticate', (req, res, next) => {
   User.getUserByEmail(email, (err, user) => {
     if (err) throw err;
     if (!user) {
-      return res.json({ success: false, msg: 'User not found' });
+      return res.json({ success: false, msg: 'Utilisateur non trouve' });
     }
 
     User.comparePassword(password, user.password, (err, isMatch) => {
@@ -72,17 +73,13 @@ router.post('/authenticate', (req, res, next) => {
           }
         });
       } else {
-        return res.json({ success: false, msg: 'Wrong password' });
+        return res.json({ success: false, msg: 'Mot de passe non valide' });
       }
     });
   });
 });
 /* UPDATE User (add avert ) */
 router.put('/addUserAdvert', function (req, res, next) {
-// la tu recupere le tableau user du coup on fait req.body.user.advert.....
- console.log("TEST CITY"+req.body.user);
-
- // console.log(req.body);
 
   async.waterfall([
     //creation dans la table advert
@@ -91,8 +88,11 @@ router.put('/addUserAdvert', function (req, res, next) {
       var data = img.replace(/^data:image\/\w+;base64,/, "");
       var buf = new Buffer(data, 'base64');
       fs.writeFile('src/assets/' + req.body.advert.image_url, buf);
-
-      Advert.create(req.body.advert, callback)
+      let ad=new Advert();
+      ad = req.body.advert;
+      ad.current_date=utility.getDateTime();
+      
+      Advert.create(ad, callback)
     },  // creation dans la table user
     function (advert, callback) {
       User.addUserAdvert(req.body._id, advert, callback)
@@ -103,7 +103,6 @@ router.put('/addUserAdvert', function (req, res, next) {
     return res.json(success);
   });
 
-  //res.json({ success: true, msg: 'ajout reussi' });
 });
 
 /* DELETE User adver */
@@ -128,7 +127,6 @@ router.put('/deleteUserAdvert', function (req, res, next) {
   });
 
 
- // res.json({success:true});
 });
 
 // Profile
@@ -140,12 +138,10 @@ router.get('/profile', passport.authenticate('jwt', { session: false }), (req, r
 
 router.get('/getUserAdvert/:id', (req, res, next) => {
 
-  // console.log("contenu " + req.params.id);
 
   User.getUserAdvert(req.params.id, function (err, post) {
     if (err) return next(err);
     res.json(post)
-    /// console.log(post)
   });
 
 

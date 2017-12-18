@@ -1,9 +1,9 @@
 <div class="container">
-    <ngx-flash-messages></ngx-flash-messages>
+  <ngx-flash-messages></ngx-flash-messages>
   <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
     <div class="panel panel-info">
       <div class="panel-heading">
-        <div class="panel-title">Sign In</div>
+        <div class="panel-title">Identification</div>
       </div>
 
       <div style="padding-top:30px" class="panel-body">
@@ -16,7 +16,7 @@
             <span class="input-group-addon">
               <i class="glyphicon glyphicon-user"></i>
             </span>
-            <input id="login-email" [(ngModel)]="user1.email" name="emailauth" type="text" class="form-control" name="email" value=""
+            <input id="login-email" [(ngModel)]="user1.email" name="emailauth" type="email" class="form-control" name="email" value=""
               placeholder="email" required>
           </div>
 
@@ -63,38 +63,38 @@
                 <form #userForm="ngForm">
                   <div class="form-group">
                     <label for="name">Nom</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.name" name="isbn" required>
+                    <input type="text" class="form-control" [(ngModel)]="user.name" name="isbn" required="required">
                   </div>
                   <div class="form-group">
                     <label for="name">Prenom</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.last_name" name="title" required>
+                    <input type="text" class="form-control" [(ngModel)]="user.last_name" name="title" required="required">
                   </div>
                   <div class="form-group">
                     <label for="name">Mail</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.email" name="author" required>
+                    <input type="email" class="form-control" [(ngModel)]="user.email" name="author" required="required">
                   </div>
                   <div class="form-group">
                     <label for="name">Mot de passe</label>
-                    <input class="form-control" type="password" [(ngModel)]="user.password" name="password" required>
+                    <input class="form-control" type="password" [(ngModel)]="user.password" name="password" required="required">
                   </div>
                   <div class="form-group">
                     <label for="name">numero de rue et rue </label>
-                    <input type="text" class="form-control" [(ngModel)]="user.address.street" name="publisher" required>
+                    <input type="text" class="form-control" [(ngModel)]="user.address.street" name="publisher" required="required">
                   </div>
                   <div class="form-group">
                     <label for="name">Ville </label>
-                    <input type="text" class="form-control" [(ngModel)]="user.address.city" name="publisher" required>
+                    <input type="text" class="form-control" [(ngModel)]="user.address.city" name="publisher" required="required">
                   </div>
                   <div class="form-group">
                     <label for="name">Code Ville </label>
-                    <input type="text" class="form-control" [(ngModel)]="user.address.city_code" name="publisher" required>
+                    <input type="text" class="form-control" [(ngModel)]="user.address.city_code" name="publisher" required="required">
                   </div>
                   <div class="form-group">
                     <label for="name">Pays </label>
-                    <input type="text" class="form-control" [(ngModel)]="user.address.country" name="publisher" required>
+                    <input type="text" class="form-control" [(ngModel)]="user.address.country" name="publisher" required="required">
                   </div>
                   <div class="form-group">
-                    <button type="submit" class="btn btn-success" (click)='createUser()' data-dismiss="modal">Save</button>
+                    <button type="submit" class="btn btn-success" (click)='createUser()' data-dismiss="modal">Enregistrer</button>
                   </div>
                 </form>
 

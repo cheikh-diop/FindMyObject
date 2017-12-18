@@ -17,6 +17,7 @@ export class MyadvertComponent implements OnInit {
   }
   matchadvert: any;
   match = false;
+  fixedAdvert:any;
   constructor(private router: Router, private http: Http, private auth: LoginComponent) { }
 
   ngOnInit() {
@@ -34,9 +35,11 @@ export class MyadvertComponent implements OnInit {
         return false;
       }
     )
+  }
 
+  fixUpdateAdvert(id) {
 
-
+    this.fixedAdvert = id
   }
 
   deleteAdvert(id) {
@@ -56,12 +59,12 @@ export class MyadvertComponent implements OnInit {
    }
   matchAdvert(ad) {
     // une autre annonce regarde 
-  
+
     console.log("parameter" + ad.type);
     this.http.post('http://localhost:3000/advert/match', ad)
       .map(res => res.json()).
       subscribe(data => {
-        console.log("taille "+data.length);
+        console.log("taille " + data.length);
         this.matchadvert = data;
       });
   }
