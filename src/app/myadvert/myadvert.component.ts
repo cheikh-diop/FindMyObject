@@ -12,7 +12,8 @@ import { Body } from '@angular/http/src/body';
 export class MyadvertComponent implements OnInit {
   advert: any;
   user = {
-    _id: ""
+    _id: "",
+    idadvert: ""
   }
   matchadvert: any;
   match = false;
@@ -43,12 +44,14 @@ export class MyadvertComponent implements OnInit {
      this.user.idadvert=id;
      this.http.put('http://localhost:3000/user/deleteUserAdvert/',this.user)
        .subscribe(res => {
-         alert ("suppression faite");
-         console.log(res)
+       // console.log(res);
+      this. ngOnInit() ;
        }, (err) => {
          console.log(err);
        }
+     
        );
+     //  this.router.navigate(['/myadvert']);
       // this.router.navigate(['/myadvert']);
    }
   matchAdvert(ad) {
@@ -61,7 +64,6 @@ export class MyadvertComponent implements OnInit {
         console.log("taille "+data.length);
         this.matchadvert = data;
       });
-
   }
 
 }

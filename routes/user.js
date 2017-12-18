@@ -116,13 +116,11 @@ router.put('/deleteUserAdvert', function (req, res, next) {
     
     function (callback) {
       Advert.where('_id').equals(req.body.idadvert).remove(callback)
-
     },
-    function (callback) {
-
-      User.update({_id:req.body._id}, {$pull: {advert: {_id : req.body.idadvert}}},callback)
-        
-    }
+    function (res,callback) {
+     // console.log(res)
+    User.update({ _id: req.body._id }, {$pull: { advert: { _id : new mongoose.mongo.ObjectId(req.body.idadvert) }} },callback);
+  }
   ], function (error, success) {
     if (error) res.json({ success: false, msg: 'probleme ajout' });
 
@@ -130,7 +128,7 @@ router.put('/deleteUserAdvert', function (req, res, next) {
   });
 
 
-  //res.json({success:true});
+ // res.json({success:true});
 });
 
 // Profile
