@@ -12,7 +12,27 @@ import { Body } from '@angular/http/src/body';
 export class MyadvertComponent implements OnInit {
   advert: any;
   user = {
-    _id: ""
+    _id: "",
+    idadvert: ""
+  }
+  fixedAdvert: any;
+  advert1 = {
+    title: "",
+    type: "",
+    description: "",
+    mark: "",
+    model: "",
+    image_url: "",
+    date_time: "",
+    address: {
+      street: "",
+      city: "",
+      code_city: "",
+      country: "",
+      longitude: "",
+      latitude: ""
+    }
+
   }
   matchadvert: any;
   match = false;
@@ -33,32 +53,34 @@ export class MyadvertComponent implements OnInit {
         return false;
       }
     )
+  }
 
+  fixUpdateAdvert(id) {
 
-
+    this.fixedAdvert = id
   }
 
   deleteAdvert(id) {
     alert("suppression");
-     this.user.idadvert=id;
-     this.http.put('http://localhost:3000/user/deleteUserAdvert/',this.user)
-       .subscribe(res => {
-         alert ("suppression faite");
-         console.log(res)
-       }, (err) => {
-         console.log(err);
-       }
-       );
-      // this.router.navigate(['/myadvert']);
-   }
+    this.user.idadvert = id;
+    this.http.put('http://localhost:3000/user/deleteUserAdvert/', this.user)
+      .subscribe(res => {
+        alert("suppression faite");
+        console.log(res)
+      }, (err) => {
+        console.log(err);
+      }
+      );
+    // this.router.navigate(['/myadvert']);
+  }
   matchAdvert(ad) {
     // une autre annonce regarde 
-  
+
     console.log("parameter" + ad.type);
     this.http.post('http://localhost:3000/advert/match', ad)
       .map(res => res.json()).
       subscribe(data => {
-        console.log("taille "+data.length);
+        console.log("taille " + data.length);
         this.matchadvert = data;
       });
 

@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component'
 import { Http, RequestOptions, Headers, URLSearchParams, ResponseContentType, Response } from '@angular/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
 import { ElementRef, NgModule, NgZone, ViewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
@@ -102,6 +101,8 @@ export class CreateAdvertComponent implements OnInit {
         console.log(err);
       }
       );
+      alert("Votre annonce a été créé avec succés");
+      this.router.navigate(['myadvert']);
     }
 
 
@@ -128,24 +129,22 @@ export class CreateAdvertComponent implements OnInit {
 
     userCreateAdvert() {
 
-      //console.log("utilisateur creer annonce")
-
-    //console.log("utilisateur creer annonce")
-  
-
     this.user.advert = this.advert;
-    //this.user.advert.address=this.advert.address;
 
     console.log("annonce " + JSON.stringify(this.user));
     this.http.put('http://localhost:3000/user/addUserAdvert', this.user)
       .subscribe(res => {
         alert("Votre annonce a été créé avec succés");
-        console.log("RESULTAT" + res);
+        
+        
       }, (err) => {
 
         console.log(err);
       }
       )
+      alert("Votre annonce a été créé avec succés");
+      
+      this.router.navigate(['myadvert']);
     }
 
     ngOnInit() {
@@ -153,7 +152,6 @@ export class CreateAdvertComponent implements OnInit {
       if (localStorage.getItem('user')) {
         this.auth.getProfile().subscribe(profile => {
           this.user = profile.user;
-          //salert("utilisateur " + this.user)
 
         },
           err => {
