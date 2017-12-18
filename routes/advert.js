@@ -1,9 +1,11 @@
+
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Advert = require('../models/Advert.js');
 var fs = require('fs');
 var decode64 = require('base-64').decode;
+var utility = require('../config/utility.js');
 
 /* GET ALL ADVERTS */
 router.get('/', function(req, res, next) {
@@ -46,17 +48,7 @@ router.get('/searchField', function(req, res, next) {
 
 router.get('/search', function(req, res, next) {
   
- /* const regex = new RegExp(escapeRegex("model"), 'gi');
-  Advert.find({ "model": regex }, function (err, results) {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log(results);
-        console.log("TEST");
-    }
-});*/
 
-//console.log("happy!!!!"+req.query.search);
 var keyword = req.query.search;
 
 var find = {'$text':{'$search':keyword}};
@@ -66,20 +58,10 @@ Advert.find(find)
   
   if (err) return next(err);
  
-  //console.log(JSON.stringify(docs));
   res.json(docs);
 });
 
-//TEST**********
-/*Advert.find(find, function (err, results) {
-  if (err) {
-      console.log(err);
-  } else {
-    console.log(JSON.stringify(results));
-    res.json(results);
-   
-  }
-});*/
+
 });
 
 /* GET ADVERT  BY ID */
@@ -102,6 +84,7 @@ router.post('/createAdvert', function(req, res, next) {
 
 /* SAVE ADVERT SOME COLOMNS */
 router.post('/addAdvertLessUser',(req,res)=>{
+console.log(utility.getDateTime())
 var a =new Advert();
 var img = req.body.url;
 var data = img.replace(/^data:image\/\w+;base64,/, "");
@@ -113,11 +96,11 @@ fs.writeFile('src/assets/'+req.body.image_url, buf);
   a.type=req.body.type;
   a.mark=req.body.mark;
   a.model=req.body.model;
-  a.address.code_city=req.body.code_city;
-  console.log("JE SUIS CITY "+req.body.city+" JE SUIS COUNTRY"+req.body.country);
-  a.address.city=req.body.city;
-  a.address.country=req.body.country;
-  a.address.street=req.body.street;
+  a.current_date=utility.getDateTime();
+  a.address.code_city=req.body.address.code_city;
+  a.address.city=req.body.address.city;
+  a.address.country=req.body.address.country;
+  a.address.street=req.body.address.street;
   a.date_time=req.body.date_time;
   a.image_url=req.body.image_url;
   a.save(function(err){

@@ -20,6 +20,8 @@ import { MyadvertComponent } from './myadvert/myadvert.component';
 import { SearchAdvertComponent } from './search-advert/search-advert.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+import {PaginationserviceService} from './paginationservice.service'
+
 
 
 const appRoutes: Routes = [
@@ -112,7 +114,7 @@ const appRoutes: Routes = [
       { enableTracing: true }
     )
   ],
-  providers: [LoginComponent,AuthGuardService],
+  providers: [LoginComponent,AuthGuardService,PaginationserviceService],
   
   bootstrap: [AppComponent]
 })

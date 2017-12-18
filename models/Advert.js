@@ -9,11 +9,14 @@ var AdvertSchema = new mongoose.Schema({
         model: String,
         image_url: String,
         date_time: String,
+        current_date:String,
         address: {
             street: String,
             city: String,
             code_city: Number,
-            country: String
+            country: String,
+            latitude: Number,
+            longitude: Number,
         }
     });
     AdvertSchema.index({'$**': 'text'});

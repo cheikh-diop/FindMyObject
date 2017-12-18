@@ -24,15 +24,18 @@
         <button type="button" class="btn btn-default edit-btn">
             <span class="glyphicon glyphicon-pencil">Modifier</span>
           </button>
-      <button type="button" class="btn btn-default delete-btn" >
+      <button type="button" class="btn btn-default delete-btn" (click)='deleteAdvert(ad._id)'>
         <span class="glyphicon glyphicon-remove">Supprimer</span>
       </button>
     </td>
   </tr>
 </table>
-
-<div class="container" *ngIf="match">
-<table class="table">
+<div class="container" *ngIf="matchadvert?.length ==0 ">
+  <h2> Desole il n'y a pas d'annonce qui match </h2>  
+</div>
+<div class="container" *ngIf="matchadvert?.length > 0">
+<h1>Resultat match </h1>
+  <table class="table">
 <tr>
   <th>Numero</th>
   <th>titre</th>

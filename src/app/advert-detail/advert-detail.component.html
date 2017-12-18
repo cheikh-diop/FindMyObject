@@ -2,6 +2,7 @@
   <h1>{{ advert.title }}</h1>
   
   <dl class="list">
+      
     <dt>Type annonce</dt>
     <dd>{{ advert.type }}</dd>
     <dt>Description</dt>
@@ -23,9 +24,10 @@
     <h3> Country </h3>
     
     <dd>{{advert.address?.country}}</dd>
-
-
-
-
   </dl>
+  <div class="form-group">
+  <agm-map [latitude]=advert.address?.latitude [longitude]=advert.address?.longitude [scrollwheel]="false" [zoom]="zoom">
+    <agm-marker [latitude]=advert.address?.latitude [longitude]=advert.address?.longitude></agm-marker>
+  </agm-map>
+  </div>
 </div>

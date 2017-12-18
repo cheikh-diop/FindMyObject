@@ -38,14 +38,27 @@ export class MyadvertComponent implements OnInit {
 
   }
 
-  
+  deleteAdvert(id) {
+    alert("suppression");
+     this.user.idadvert=id;
+     this.http.put('http://localhost:3000/user/deleteUserAdvert/',this.user)
+       .subscribe(res => {
+         alert ("suppression faite");
+         console.log(res)
+       }, (err) => {
+         console.log(err);
+       }
+       );
+      // this.router.navigate(['/myadvert']);
+   }
   matchAdvert(ad) {
     // une autre annonce regarde 
-    this.match = true;
+  
     console.log("parameter" + ad.type);
     this.http.post('http://localhost:3000/advert/match', ad)
       .map(res => res.json()).
       subscribe(data => {
+        console.log("taille "+data.length);
         this.matchadvert = data;
       });
 

@@ -1,24 +1,45 @@
-<div class="container">
-  <h2>Liste des annonces </h2> 
-  <a class="btn btn-primary" [routerLink]="['/searchAdvert']"> Chercher Annonce </a>
-  <h5>Cliquer sur l'image pour voir l'annonce </h5>
-  <div class="row">
-    <div *ngFor="let advert of adverts" class="col-md-3">
-      <div class="thumbnail  ">
-        <p>{{ advert.date_time }}</p>
-        <img src="../../assets/{{advert.image_url}}" alt="{{advert.image_url}}" style="width:50%">
-        <div class="caption">
-          <p>{{ advert.title }}</p>
-          <p>{{ advert.type }}</p>
+<body>
 
-          <p style="white-space: nowrap;
-                  width: 50px;
-                  display:none;
-                  overflow: hidden;
-                  text-overflow: ellipsis;">{{ advert.description }}</p>
-        </div>
-        <a class="btn btn-primary" [routerLink]="['/advert-detail', advert._id]"> Voir Annonce </a>
+  <div class="container">
+    <h2>Toutes les annonces</h2>
+    <a class="btn btn-primary" [routerLink]="['/searchAdvert']"> Chercher Annonce </a>
+
+    <p>Cliquer sur l'image pour voir l'annonce</p>
+
+    <!-- Left-aligned media object -->
+    <div class="media" *ngFor="let advert of pagedItems">
+      <div class="media-left">
+        <img src="../../assets/{{advert.image_url}}" alt="{{advert.image_url}}" class="media-object" style="width:90px">
       </div>
+      <div class="media-body">
+          <h6 class="media-heading">date de creation : {{advert.current_date}}</h6>
+        <h6 class="media-heading">date : {{advert.date_time}}</h6>
+        <h6 class="media-heading">type : {{advert.type}}</h6>
+        <h4 class="media-heading">titre :{{advert.title}}</h4>
+        <p>{{advert.description}}</p>
+        <a class="btn btn-primary" [routerLink]="['/advert-detail', advert._id]"> Voir Annonce </a>
+
+      </div>
+      <hr>
     </div>
+    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+        <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(1)">Page 1</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(pager.currentPage - 1)">Precedent</a>
+        </li>
+        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+            <a (click)="setPage(page)">{{page}}</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.currentPage + 1)">Suivant</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.totalPages)">Dernier</a>
+        </li>
+    </ul>
+
   </div>
-</div>
+
+</body>
