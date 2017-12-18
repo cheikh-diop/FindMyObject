@@ -40,7 +40,7 @@ export class MyadvertComponent implements OnInit {
 
   deleteAdvert(id) {
     alert("suppression");
-     this.user.idadvert=id;
+     this.user._id=id;
      this.http.put('http://localhost:3000/user/deleteUserAdvert/',this.user)
        .subscribe(res => {
          alert ("suppression faite");
