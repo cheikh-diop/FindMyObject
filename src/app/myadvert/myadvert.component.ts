@@ -38,7 +38,7 @@ export class MyadvertComponent implements OnInit {
       this.user._id = profile.user._id;
 
       console.log(this.user._id)
-      this.http.get('http://localhost:3000/user/getUserAdvert/' + this.user._id).subscribe(data => {
+      this.http.get('user/getUserAdvert/' + this.user._id).subscribe(data => {
         this.advert = data.json().advert;
       });
     },
@@ -58,7 +58,7 @@ export class MyadvertComponent implements OnInit {
     this.advert1.userid=this.user._id;
     this.advert1._id=this.fixedAdvert;
     
-    this.http.put('http://localhost:3000/user/updateUserAdvert/', this.advert1)
+    this.http.put('user/updateUserAdvert/', this.advert1)
     .subscribe(res => {
       
       this.ngOnInit() ;
@@ -72,7 +72,7 @@ export class MyadvertComponent implements OnInit {
   deleteAdvert(id) {
     alert("suppression");
      this.user._id=id;
-     this.http.put('http://localhost:3000/user/deleteUserAdvert/',this.user)
+     this.http.put('user/deleteUserAdvert/',this.user)
        .subscribe(res => {
        // console.log(res);
       this.ngOnInit() ;
@@ -88,7 +88,7 @@ export class MyadvertComponent implements OnInit {
     // une autre annonce regarde 
 
     console.log("parameter" + ad.type);
-    this.http.post('http://localhost:3000/advert/match', ad)
+    this.http.post('advert/match', ad)
       .map(res => res.json()).
       subscribe(data => {
         console.log("taille " + data.length);

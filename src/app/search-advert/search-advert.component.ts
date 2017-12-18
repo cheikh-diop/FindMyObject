@@ -32,7 +32,7 @@ export class SearchAdvertComponent implements OnInit {
     .set('mark', this.mark)
     .set('country', this.country)
     .set('city', this.city);
-    this.http.get('http://localhost:3000/advert/searchField',{ params: params }).subscribe(data => {
+    this.http.get('advert/searchField',{ params: params }).subscribe(data => {
       this.advert =  data;
     });
   }
@@ -46,7 +46,7 @@ export class SearchAdvertComponent implements OnInit {
   
   let params = new HttpParams().set('search', value);
 
-   this.http.get('http://localhost:3000/advert/search', { params: params }).subscribe(data => {
+   this.http.get('advert/search', { params: params }).subscribe(data => {
    this.advert =  data;
   });
   }
