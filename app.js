@@ -17,7 +17,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 'extended': 'false' }));
 app.use(express.static(path.join(__dirname, 'dist')));
 // Permit server to receive heavy file
+app.use(bodyParser());
 app.use(bodyParser({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb'}));
 // Port Number 
 const port=process.env.PORT || 8000;
 // Passport Middleware
