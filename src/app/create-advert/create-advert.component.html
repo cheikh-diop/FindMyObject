@@ -18,8 +18,8 @@
           <label class="col-sm-2 control-label">Type</label>
           <div class="col-sm-10">
             <select [(ngModel)]='advert.type' name="type" class="form-control" id="type" aria-placeholder="Choisir le type de votre annonce">
-              <option selected="auth.loggedIn()" *ngIf="auth.loggedIn()">Perdu</option>
-              <option *ngIf="!auth.loggedIn()">Trouve</option>
+              <option [ngValue]="advert.type" *ngIf="auth.loggedIn()">Perdu</option>
+              <option [ngValue]="advert.type" *ngIf="!auth.loggedIn()">Trouve</option>
             </select>
           </div>
         </div>

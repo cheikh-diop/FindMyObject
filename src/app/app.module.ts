@@ -21,7 +21,7 @@ import { SearchAdvertComponent } from './search-advert/search-advert.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import {PaginationserviceService} from './paginationservice.service'
-
+import { EqualValidator } from './login/password.match.directive';
 
 
 const appRoutes: Routes = [
@@ -86,6 +86,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     CreateAdvertComponent,
+    EqualValidator,
     AppComponent,
     AdvertComponent,
     AdvertDetailComponent,
