@@ -27,7 +27,7 @@ export class AdvertDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private http: HttpClient,  private mapsAPILoader: MapsAPILoader, private ngZone: NgZone)  { }
   
   getAdvertDetail(id) {
-      this.http.get('advert/'+id).subscribe(data => {
+      this.http.get('http://localhost:3000/advert/'+id).subscribe(data => {
         this.advert = data;
       });
     }

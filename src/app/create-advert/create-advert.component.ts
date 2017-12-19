@@ -102,7 +102,7 @@ export class CreateAdvertComponent implements OnInit {
     // Si il n y a pas de connexion cela veut dire c'est un ajout d'objet trouve
     console.log("creer annonce");
     console.log("pub" +JSON.stringify(this.advert))
-    this.http.post('advert/addAdvertLessUser', this.advert)
+    this.http.post('http://localhost:3000/advert/addAdvertLessUser', this.advert)
       .subscribe(res => {
         alert("Votre annonce a été créé avec succés");
         console.log("RESULTAT" + res);
@@ -141,7 +141,7 @@ export class CreateAdvertComponent implements OnInit {
     this.user.advert = this.advert;
 
     console.log("annonce " + JSON.stringify(this.user));
-    this.http.put('user/addUserAdvert', this.user)
+    this.http.put('http://localhost:3000/user/addUserAdvert', this.user)
       .subscribe(res => {
         alert("Votre annonce a été créé avec succés");
         

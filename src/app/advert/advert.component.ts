@@ -19,7 +19,7 @@ export class AdvertComponent implements OnInit {
   pagedItems: any[]
   ngOnInit() {
     // get data
-    this.http.get('advert')
+    this.http.get('http://localhost:3000/advert')
       .map((response: Response) => response.json())
       .subscribe(data => {
         this.adverts = data;
