@@ -141,7 +141,7 @@ export class CreateAdvertComponent implements OnInit {
     this.user.advert = this.advert;
 
     console.log("annonce " + JSON.stringify(this.user));
-    this.http.put('http://localhost:3000/user/addUserAdvert', this.user)
+    this.http.put('user/addUserAdvert', this.user)
       .subscribe(res => {
         alert("Votre annonce a été créé avec succés");
         
