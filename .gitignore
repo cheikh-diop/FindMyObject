@@ -5,11 +5,12 @@
 /tmp
 /out-tsc
 
-# dependencies
 
 front/node_modules
 backend/node_modules
-/package-lock.json
+
+# dependencies
+
 
 # IDEs and editors
 /.idea
