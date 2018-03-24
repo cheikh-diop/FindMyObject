@@ -6,8 +6,9 @@
 /out-tsc
 
 # dependencies
-/dist
-/node_modules
+
+front/node_modules
+backend/node_modules
 /package-lock.json
 
 # IDEs and editors
